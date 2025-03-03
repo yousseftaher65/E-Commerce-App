@@ -9,11 +9,40 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  supabase_flutter :
+  dio :
+  bloc : ^9.0.0
+  flutter_bloc : ^9.0.0
+  google_sign_in : ^6.2.2
+  easy_localization :
+  flutter_screenutil :
+  google_fonts :
+  fluttertoast : ^8.2.12
+  loader_overlay :
+  animate_do :
+  animated_toggle_switch :
+  cached_network_image :
+  connectivity_plus :
+  carousel_slider:
+  flutter_svg:
+  shared_preferences :
+  get_it:
+  flutter_native_splash:
+  readmore:
+  smooth_page_indicator:  
+  dartz: ^0.10.1
+  injectable: ^2.5.0
+  pretty_dio_logger: ^1.4.0
+  freezed: ^2.5.7
+  equatable: ^2.0.7
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  build_runner:
+  injectable_generator: 
 
 flutter:
   uses-material-design: true
