@@ -281,6 +281,14 @@ class $AssetsLogosGen {
   AssetGenImage get appLogoLight =>
       const AssetGenImage('assets/logos/app_logo_light.png');
 
+  /// File path: assets/logos/app_logo_splash_dark.png
+  AssetGenImage get appLogoSplashDark =>
+      const AssetGenImage('assets/logos/app_logo_splash_dark.png');
+
+  /// File path: assets/logos/app_logo_splash_light.png
+  AssetGenImage get appLogoSplashLight =>
+      const AssetGenImage('assets/logos/app_logo_splash_light.png');
+
   /// File path: assets/logos/decor.png
   AssetGenImage get decor => const AssetGenImage('assets/logos/decor.png');
 
@@ -321,6 +329,8 @@ class $AssetsLogosGen {
   List<AssetGenImage> get values => [
         appLogoDark,
         appLogoLight,
+        appLogoSplashDark,
+        appLogoSplashLight,
         decor,
         electronics,
         equipment,
