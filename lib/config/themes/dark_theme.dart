@@ -29,7 +29,7 @@ class DarkTheme extends BaseTheme {
   Color get hintTextColor => AppColors.grayDark100;
 
   @override
-  Color get supTextColor => AppColors.grayDark150;
+  Color get subTextColor => AppColors.grayDark150;
 
   @override
   ThemeData get themeData => ThemeData(
@@ -39,6 +39,7 @@ class DarkTheme extends BaseTheme {
         scaffoldBackgroundColor: blackColor,
         cardColor: whiteColor,
         hintColor: hintTextColor,
+        hoverColor: subTextColor,
 
         ///app bar theme
         appBarTheme: AppBarTheme(
@@ -48,11 +49,12 @@ class DarkTheme extends BaseTheme {
 
         ///bottom nav bar
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          
           selectedItemColor: primaryColor,
-          unselectedItemColor: supTextColor,
+          unselectedItemColor: subTextColor,
           backgroundColor: blackColor,
           elevation: 0,
-          type: BottomNavigationBarType.shifting,
+          type: BottomNavigationBarType.fixed,
           showUnselectedLabels: true,
           showSelectedLabels: true,
         ),
@@ -106,7 +108,14 @@ class DarkTheme extends BaseTheme {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.r),
             borderSide: BorderSide(
-              color: primaryColor,
+              color: accentColor,
+              width: 1.w,
+            ),
+          ),
+          disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.r),
+            borderSide: BorderSide(
+              color: accentColor,
               width: 1.w,
             ),
           ),
