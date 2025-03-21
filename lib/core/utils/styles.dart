@@ -4,9 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Styles {
   TextStyle _getTextStyle(double fontSize, FontWeight fontWeight, Color color,
-      {double height = 1, double letterSpacing = 0}) {
+      { double letterSpacing = 0}) {
     return TextStyle(
-        height: height.h,
         letterSpacing: letterSpacing.sp,
         fontSize: fontSize.sp,
         fontFamily: FontFamily.fontFamily,
@@ -17,76 +16,75 @@ class Styles {
   TextStyle getHeadline1BoldStyle(
       {double fontSize = FontSize.s32,
       required Color color,
-      double height = 1.20}) {
-    return _getTextStyle(fontSize, FontWeightManager.bold, color,
-        height: height);
+      }) {
+    return _getTextStyle(fontSize, FontWeightManager.bold, color,);
   }
 
   TextStyle getHeadline2BoldStyle(
       {double fontSize = FontSize.s24,
       required Color color,
-      double height = 1.20}) {
+      }) {
     return _getTextStyle(fontSize, FontWeightManager.bold, color,
-        height: height);
+        );
   }
 
   TextStyle getHeadline3BoldStyle(
       {double fontSize = FontSize.s18,
       required Color color,
-      double height = 1.20,
+      
       double letterSpacing = 0.25}) {
     return _getTextStyle(fontSize, FontWeightManager.bold, color,
-        height: height, letterSpacing: letterSpacing);
+         letterSpacing: letterSpacing);
   }
 
   TextStyle getHeadline1SemiBoldStyle(
       {double fontSize = FontSize.s32,
       required Color color,
-      double height = 1.20}) {
+      }) {
     return _getTextStyle(fontSize, FontWeightManager.semiBold, color,
-        height: height);
+        );
   }
 
   TextStyle getHeadline2SemiBoldStyle(
       {double fontSize = FontSize.s24,
       required Color color,
-      double height = 1.20}) {
+      }) {
     return _getTextStyle(fontSize, FontWeightManager.semiBold, color,
-        height: height);
+        );
   }
 
   TextStyle getHeadline3SemiBoldStyle(
       {double fontSize = FontSize.s18,
       required Color color,
-      double height = 1.20,
+      
       double letterSpacing = 0.25}) {
     return _getTextStyle(fontSize, FontWeightManager.semiBold, color,
-        height: height, letterSpacing: letterSpacing);
+         letterSpacing: letterSpacing);
   }
 
   TextStyle getHeadline1RegularStyle(
       {double fontSize = FontSize.s32,
       required Color color,
-      double height = 1.20}) {
+      }) {
     return _getTextStyle(fontSize, FontWeightManager.regular, color,
-        height: height);
+        );
   }
 
   TextStyle getHeadline2RegularStyle(
       {double fontSize = FontSize.s24,
       required Color color,
-      double height = 1.20}) {
+      }) {
     return _getTextStyle(fontSize, FontWeightManager.regular, color,
-        height: height);
+        );
   }
 
   TextStyle getHeadline3RegularStyle(
       {double fontSize = FontSize.s18,
       required Color color,
-      double height = 1.20,
+      
       double letterSpacing = 0.25}) {
     return _getTextStyle(fontSize, FontWeightManager.regular, color,
-        height: height, letterSpacing: letterSpacing);
+         letterSpacing: letterSpacing);
   }
 
   TextStyle getButton1Style(
@@ -112,10 +110,10 @@ class Styles {
   TextStyle getBody1MeduimStyle(
       {double fontSize = FontSize.s16,
       required Color color,
-      double height = 1.5,
+      double height = 1.2,
       double letterSpacing = 0.25}) {
     return _getTextStyle(fontSize, FontWeightManager.medium, color,
-        height: height, letterSpacing: letterSpacing);
+        letterSpacing: letterSpacing);
   }
 
   TextStyle getBody1RegulerStyle(
@@ -124,7 +122,7 @@ class Styles {
       double height = 1.5,
       double letterSpacing = 0.25}) {
     return _getTextStyle(fontSize, FontWeightManager.regular, color,
-        height: height, letterSpacing: letterSpacing);
+         letterSpacing: letterSpacing);
   }
 
   TextStyle getBody2MeduimStyle(
@@ -133,7 +131,7 @@ class Styles {
       double height = 1.5,
       double letterSpacing = 0.25}) {
     return _getTextStyle(fontSize, FontWeightManager.medium, color,
-        height: height, letterSpacing: letterSpacing);
+         letterSpacing: letterSpacing);
   }
 
   TextStyle getBody2RegulerStyle(
@@ -142,7 +140,7 @@ class Styles {
       double height = 1.5,
       double letterSpacing = 0.25}) {
     return _getTextStyle(fontSize, FontWeightManager.regular, color,
-        height: height, letterSpacing: letterSpacing);
+         letterSpacing: letterSpacing);
   }
 
   TextStyle getCaptionSemiBoldStyle({

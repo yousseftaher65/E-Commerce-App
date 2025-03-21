@@ -29,7 +29,7 @@ class LightTheme extends BaseTheme {
   Color get hintTextColor => AppColors.grayLight100;
 
   @override
-  Color get supTextColor => AppColors.grayLight150;
+  Color get subTextColor => AppColors.grayLight150;
 
   @override
   ThemeData get themeData => ThemeData(
@@ -39,6 +39,7 @@ class LightTheme extends BaseTheme {
         scaffoldBackgroundColor: whiteColor,
         cardColor: blackColor,
         hintColor: hintTextColor,
+        hoverColor: subTextColor,
 
         ///app bar theme
         appBarTheme: AppBarTheme(
@@ -49,10 +50,10 @@ class LightTheme extends BaseTheme {
         ///bottom nav bar
         bottomNavigationBarTheme:  BottomNavigationBarThemeData(
           selectedItemColor: primaryColor,
-          unselectedItemColor: supTextColor,
+          unselectedItemColor: subTextColor,
           backgroundColor: whiteColor,
           elevation: 0,
-          type: BottomNavigationBarType.shifting,
+          type: BottomNavigationBarType.fixed,
           showUnselectedLabels: true,
           showSelectedLabels: true,
         ),
@@ -71,6 +72,8 @@ class LightTheme extends BaseTheme {
 
         /// text field
         inputDecorationTheme: InputDecorationTheme(
+          prefixIconColor: blackColor,
+          suffixIconColor: blackColor,
           activeIndicatorBorder: BorderSide(color: blackColor),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.r),
@@ -106,7 +109,14 @@ class LightTheme extends BaseTheme {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.r),
             borderSide: BorderSide(
-              color: primaryColor,
+              color: accentColor,
+              width: 1.w,
+            ),
+          ),
+          disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.r),
+            borderSide: BorderSide(
+              color: accentColor,
               width: 1.w,
             ),
           ),

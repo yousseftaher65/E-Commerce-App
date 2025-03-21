@@ -8,7 +8,7 @@ abstract class BaseTheme {
   Color get whiteColor;
   Color get buttonColor;
   Color get textColor;
-  Color get supTextColor;
+  Color get subTextColor;
   Color get hintTextColor;
 
   ThemeData get themeData;
