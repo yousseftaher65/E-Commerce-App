@@ -1,10 +1,19 @@
 part of 'splash_bloc.dart';
 
-sealed class SplashState extends Equatable {
-  const SplashState();
-  
+abstract class SplashState extends Equatable {
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
-final class SplashInitial extends SplashState {}
+class SplashInitial extends SplashState {}
+
+class SplashLoadedState extends SplashState {
+  final bool isFirstTime;
+
+  SplashLoadedState({required this.isFirstTime});
+
+  @override
+  List<Object?> get props => [isFirstTime];
+}
+
+class NoInternetState extends SplashState {}

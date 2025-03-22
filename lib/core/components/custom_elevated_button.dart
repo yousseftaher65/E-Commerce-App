@@ -22,6 +22,10 @@ class CustomElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+         shape: RoundedRectangleBorder(
+          side: backgroundColor == null ? BorderSide.none : BorderSide(color: Theme.of(context).indicatorColor , width: 1.w),
+          borderRadius: BorderRadius.circular(12.r),
+        ),
         backgroundColor: backgroundColor,
       ),
       onPressed: onPressed,
@@ -33,8 +37,7 @@ class CustomElevatedButton extends StatelessWidget {
               ? Row(
                   children: [
                     SizedBox(width: 8.w),
-                    Image.asset(icon ?? '' , color: Theme.of(context).scaffoldBackgroundColor,),
-                    //Image.asset(),
+                    Image.asset(icon ?? '' , color: Theme.of(context).scaffoldBackgroundColor, height: 24.h, width: 24.w,),
                   ],
                 )
               : const SizedBox.shrink(),

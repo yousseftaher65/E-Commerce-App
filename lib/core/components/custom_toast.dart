@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_pojo/core/utils/assets.gen.dart';
 import 'package:ecommerce_pojo/core/utils/styles.dart';
 import 'package:flutter/material.dart';
@@ -17,64 +18,63 @@ class CustomToast {
   static void show(
     BuildContext context,
     String message,
-    String clickableText,
-    VoidCallback onClick, {
-    Duration duration = const Duration(seconds: 5),
-  }) {
+    String? clickableText,
+    VoidCallback onClick,) {
     _currentOverlay?.remove();
 
     OverlayEntry overlayEntry = OverlayEntry(
-      builder: (context) => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            alignment: Alignment.topCenter,
-            width: ToastConstants.width,
-            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-            decoration: BoxDecoration(
-              color: Theme.of(context).scaffoldBackgroundColor,
-              borderRadius: BorderRadius.circular(12.r),
-              border: Border.all(color: Theme.of(context).indicatorColor, width: 1.w),
-            ),
-            child: Row(
-              children: [
-                Image.asset(Assets.icons.success.path,
-                    width: ToastConstants.iconSize,
-                    height: ToastConstants.iconSize),
-                SizedBox(width: 8.w),
-                Expanded(
-                  child: RichText(
-                    text: TextSpan(
-                      text: message,
-                      style: Styles()
-                          .getCaptionSemiBoldStyle(
-                              color: Theme.of(context).cardColor)
-                          .copyWith(overflow: TextOverflow.ellipsis),
+      builder: (context) => SafeArea(
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.topCenter,
+              width: ToastConstants.width,
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+              decoration: BoxDecoration(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                borderRadius: BorderRadius.circular(12.r),
+                border: Border.all(color: Theme.of(context).indicatorColor, width: 1.w),
+              ),
+              child: Row(
+                children: [
+                  Image.asset(Assets.icons.success.path,
+                      width: ToastConstants.iconSize,
+                      height: ToastConstants.iconSize),
+                  SizedBox(width: 8.w),
+                  Expanded(
+                    child: RichText(
+                      text: TextSpan(
+                        text: message,
+                        style: Styles()
+                            .getCaptionSemiBoldStyle(
+                                color: Theme.of(context).cardColor)
+                            .copyWith(overflow: TextOverflow.ellipsis),
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(width: 32.w),
-                GestureDetector(
-                  onTap: onClick,
-                  child: RichText(
-                    text: TextSpan(
-                      text: clickableText,
-                      style: Styles().getCaptionSemiBoldStyle(
-                          color: Theme.of(context).primaryColor),
+                  SizedBox(width: 32.w),
+                  GestureDetector(
+                    onTap: onClick,
+                    child: RichText(
+                      text: TextSpan(
+                        text: clickableText == null ? '' : clickableText.tr(),
+                        style: Styles().getCaptionSemiBoldStyle(
+                            color: Theme.of(context).primaryColor),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
 
     _currentOverlay = overlayEntry;
     Overlay.of(context).insert(overlayEntry);
 
-    Future.delayed(duration, () {
+    Future.delayed(const Duration(seconds: 3), () {
       if (_currentOverlay == overlayEntry) {
         overlayEntry.remove();
         _currentOverlay = null;

@@ -1,8 +1,5 @@
 part of 'onboarding_bloc.dart';
 
-abstract class OnboardingEvent extends Equatable {
-  const OnboardingEvent();
+abstract class OnboardingEvent {}
 
-  @override
-  List<Object> get props => [];
-}
+class OnboardingComplete extends OnboardingEvent {}
