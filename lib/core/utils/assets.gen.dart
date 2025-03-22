@@ -18,6 +18,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/add_2.png
   AssetGenImage get add2 => const AssetGenImage('assets/icons/add_2.png');
 
+  /// File path: assets/icons/arrowForward.png
+  AssetGenImage get arrowForward =>
+      const AssetGenImage('assets/icons/arrowForward.png');
+
   /// File path: assets/icons/arrow_back_1.png
   AssetGenImage get arrowBack1 =>
       const AssetGenImage('assets/icons/arrow_back_1.png');
@@ -165,6 +169,7 @@ class $AssetsIconsGen {
   List<AssetGenImage> get values => [
         add1,
         add2,
+        arrowForward,
         arrowBack1,
         arrowBack2,
         cart1,

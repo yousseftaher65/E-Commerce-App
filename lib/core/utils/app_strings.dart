@@ -18,7 +18,7 @@ class AppStrings {
   static String onBoardingTitle2 = 'onboarding_title2'.tr();
   static String onBoardingTitle3 = 'onboarding_title3'.tr();
   static String onBoardingContent1 = 'onboarding_content1'.tr();
-  static String onboardingContent2 = 'onboarding_content2'.tr();
+  static String onBoardingContent2 = 'onboarding_content2'.tr();
   static String onBoardingContent3 = 'onboarding_content3'.tr();
   static String skip = 'skip'.tr();
   static String login = 'login'.tr();
@@ -172,4 +172,7 @@ class AppStrings {
   static String noComplatedOrdersContent = 'no_completed_orders_content'.tr();
   static String phoneNumberHint = 'phone_number_hint'.tr();
   static String language = 'language'.tr();
+  static String english = 'english'.tr();
+  static String arabic = 'arabic'.tr();
+  static String retry = 'retry'.tr();
 }

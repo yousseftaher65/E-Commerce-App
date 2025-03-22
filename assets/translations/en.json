@@ -161,5 +161,8 @@
     "no_completed_orders": "No Completed Orders",
     "no_completed_orders_content": "We don't have any past orders that have been completed. Start shopping now and create your first order with us.",
     "phone_number_hint": "+20",
-    "language": "Language"
+    "language": "Language",
+    "arabic": "Arabic",
+    "english": "English",
+    "retry": "Retry"
 }
