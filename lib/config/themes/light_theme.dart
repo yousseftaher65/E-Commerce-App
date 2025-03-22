@@ -33,6 +33,7 @@ class LightTheme extends BaseTheme {
 
   @override
   ThemeData get themeData => ThemeData(
+        brightness: Brightness.light, 
         primaryColor: primaryColor,
         secondaryHeaderColor: secondryColor,
         indicatorColor: accentColor,
@@ -62,7 +63,7 @@ class LightTheme extends BaseTheme {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: blackColor,
-            padding:  EdgeInsets.symmetric(vertical: 22.h),
+            padding:  EdgeInsets.symmetric(vertical: 21.h),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12.r),
             ),
