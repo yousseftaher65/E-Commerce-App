@@ -161,5 +161,10 @@
     "no_completed_orders": "لا توجد طلبات مكتملة",
     "no_completed_orders_content": "ليس لدينا أي طلبات سابقة تم إكمالها. ابدأ التسوق الآن وأنشئ طلبك الأول معنا.",
     "phone_number_hint": "+20",
-    "language": "اللغة"
+    "language": "اللغة",
+    "no internet connection": "لا يوجد اتصال بالإنترنت",
+    "no_internet_connection_content": "يبدو أنك غير متصل بالإنترنت. يرجى التحقق من اتصالك والمحاولة مرة أخرى.",
+    "retry": "حاول مرة اخرى",
+    "arabic": "العربية",
+    "english": "الإنجليزية"
 }
