@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:ecommerce_pojo/core/api/end_points.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -7,7 +8,7 @@ class ApiManager {
   late Dio dio;
 
   ApiManager() {
-    dio = Dio(BaseOptions(baseUrl: "https://ecommerce.routemisr.com"));
+    dio = Dio(BaseOptions(baseUrl: EndPoints.baseUrl));
     initInterceptors();
   }
 

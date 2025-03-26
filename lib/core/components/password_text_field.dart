@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_pojo/core/utils/app_colors.dart';
 import 'package:ecommerce_pojo/core/utils/styles.dart';
 import 'package:flutter/material.dart';
@@ -29,8 +28,8 @@ class PasswordTextField extends StatelessWidget {
       keyboardType: TextInputType.visiblePassword,
       decoration: InputDecoration(
         hintStyle:
-            Styles().getBody1RegulerStyle(color: Theme.of(context).hintColor),
-        hintText: hint.tr(),
+            Styles().getBody1RegularStyle(color: Theme.of(context).hintColor),
+        hintText: hint,
         suffixIconConstraints: BoxConstraints(minWidth: 50.w, minHeight: 0),
         suffixIcon: IconButton(
           onPressed: showPassword,

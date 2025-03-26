@@ -29,7 +29,7 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hint,
         hintStyle:
-            Styles().getBody1RegulerStyle(color: Theme.of(context).hintColor),
+            Styles().getBody1RegularStyle(color: Theme.of(context).hintColor),
       ),
     );
   }

@@ -8,6 +8,7 @@ class CustomElevatedButton extends StatelessWidget {
   final Color? backgroundColor;
   final Color? textColor;
   final String? icon;
+  final Color? iconColor;
 
   const CustomElevatedButton({
     super.key,
@@ -16,6 +17,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.backgroundColor,
     this.textColor,
     this.icon,
+    this.iconColor,
   });
 
   @override
@@ -37,7 +39,7 @@ class CustomElevatedButton extends StatelessWidget {
               ? Row(
                   children: [
                     SizedBox(width: 8.w),
-                    Image.asset(icon ?? '' , color: Theme.of(context).scaffoldBackgroundColor, height: 24.h, width: 24.w,),
+                    Image.asset(icon ?? '' , color: iconColor ?? Theme.of(context).scaffoldBackgroundColor, height: 24.h, width: 24.w,),
                   ],
                 )
               : const SizedBox.shrink(),

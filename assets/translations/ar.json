@@ -29,7 +29,7 @@
     "dont_have_account": "ليس لديك حساب؟",
     "password_hint": "أدخل كلمة المرور الخاصة بك",
     "email_hint": "أدخل بريدك الإلكتروني",
-    "confirm_password_hint": "أدخل كلمة المرور الخاصة بك مرة أخرى",
+    "confirm_password_hint": "تأكيد كلمة المرور ",
     "get_started": "ابدأ",
     "email_verification_toast": "تم إرسال رمز التحقق المكون من 6 أرقام إلى عنوان بريدك الإلكتروني.",
     "email_verification_content": "أدخل رمز التحقق المكون من 6 أرقام المرسل إلى عنوان بريدك الإلكتروني.",
@@ -166,5 +166,6 @@
     "no_internet_connection_content": "يبدو أنك غير متصل بالإنترنت. يرجى التحقق من اتصالك والمحاولة مرة أخرى.",
     "retry": "حاول مرة اخرى",
     "arabic": "العربية",
-    "english": "الإنجليزية"
+    "english": "الإنجليزية",
+    "create_account": "إنشاء حساب"
 }
