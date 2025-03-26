@@ -119,7 +119,7 @@ class _ProductCardState extends State<ProductCard> {
             Text(
               'All ${widget.colorsNum ?? '0'} Colors',
               style: Styles()
-                  .getOverlineRegulerStyle(color: Theme.of(context).cardColor)
+                  .getOverlineRegularStyle(color: Theme.of(context).cardColor)
                   .copyWith(
                       decoration: TextDecoration.underline,
                       decorationColor: Theme.of(context).cardColor),

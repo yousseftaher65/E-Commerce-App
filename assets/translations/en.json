@@ -29,7 +29,7 @@
     "dont_have_account": "Don’t have an account?",
     "password_hint": "Enter your password",
     "email_hint": "Enter your email",
-    "confirm_password_hint": "Enter your password again",
+    "confirm_password_hint": "Confirm your password",
     "get_started": "Get Started",
     "email_verification_toast": "6-digit Verification code has been send to your email address.",
     "email_verification_content": "Enter the 6-digit verification code send to your email address.",
@@ -164,5 +164,6 @@
     "language": "Language",
     "arabic": "Arabic",
     "english": "English",
-    "retry": "Retry"
+    "retry": "Retry",
+    "create_account": "Create Account"
 }

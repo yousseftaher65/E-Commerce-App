@@ -1,4 +1,5 @@
 import 'package:ecommerce_pojo/config/routes/page_route_name.dart';
+import 'package:ecommerce_pojo/features/auth/presentation/pages/signup_screen.dart';
 import 'package:ecommerce_pojo/features/mainScreen/main_screen.dart';
 import 'package:ecommerce_pojo/features/onboarding/presentation/pages/onBoarding_screen.dart';
 import 'package:ecommerce_pojo/features/splash/presentation/pages/splash_screen.dart';
@@ -41,7 +42,7 @@ class GoRouterConfig {
         path: PageRouteName.signup,
         pageBuilder: (_, GoRouterState state) => getCustomTransitionPage(
           state: state,
-          child: const Placeholder(),
+          child: const SignupScreen(),
         ),
       ),
       GoRoute(

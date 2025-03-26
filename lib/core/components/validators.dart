@@ -31,8 +31,10 @@ class Validators {
   static String? validateConfirmPassword(String? val, String? password) {
     if (val == null || val.isEmpty) {
       return 'this field is required';
+    } else if (password == null || password.isEmpty) {
+      return 'password is required';
     } else if (val != password) {
-      return 'same password';
+      return 'Passwords do not match';
     } else {
       return null;
     }

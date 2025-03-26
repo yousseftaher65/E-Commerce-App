@@ -116,7 +116,7 @@ class Styles {
         letterSpacing: letterSpacing);
   }
 
-  TextStyle getBody1RegulerStyle(
+  TextStyle getBody1RegularStyle(
       {double fontSize = FontSize.s16,
       required Color color,
       double height = 1.5,
@@ -134,7 +134,7 @@ class Styles {
          letterSpacing: letterSpacing);
   }
 
-  TextStyle getBody2RegulerStyle(
+  TextStyle getBody2RegularStyle(
       {double fontSize = FontSize.s14,
       required Color color,
       double height = 1.5,
@@ -165,7 +165,7 @@ class Styles {
     );
   }
 
-  TextStyle getOverlineRegulerStyle({
+  TextStyle getOverlineRegularStyle({
     double fontSize = FontSize.s10,
     required Color color,
     double letterSpacing = 1.5,

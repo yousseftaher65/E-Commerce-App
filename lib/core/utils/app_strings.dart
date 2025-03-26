@@ -175,4 +175,5 @@ class AppStrings {
   static String english = 'english'.tr();
   static String arabic = 'arabic'.tr();
   static String retry = 'retry'.tr();
+  static String createAccount = 'create_account'.tr();
 }

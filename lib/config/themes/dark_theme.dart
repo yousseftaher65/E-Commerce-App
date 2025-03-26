@@ -90,7 +90,7 @@ class DarkTheme extends BaseTheme {
             ),
           ),
           contentPadding:
-              EdgeInsets.symmetric(vertical: 22.h, horizontal: 12.w),
+              EdgeInsets.symmetric(vertical: 16.h, horizontal: 12.w),
           hintStyle: TextStyle(color: hintTextColor),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.r),
@@ -120,6 +120,12 @@ class DarkTheme extends BaseTheme {
               width: 1.w,
             ),
           ),
+        ),
+         textSelectionTheme: TextSelectionThemeData(
+          cursorColor: whiteColor, // Cursor color
+          selectionColor:
+              whiteColor.withOpacity(0.5), // Selected text background
+          selectionHandleColor: primaryColor, // Handle color
         ),
       );
 }

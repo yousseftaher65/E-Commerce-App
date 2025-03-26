@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_pojo/core/utils/assets.gen.dart';
 import 'package:ecommerce_pojo/core/utils/styles.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +15,11 @@ class CustomToast {
   static OverlayEntry? _currentOverlay;
 
   static void show(
-    BuildContext context,
-    String message,
+    {required BuildContext context,
+    required String message,
+    String? imagePath,
     String? clickableText,
-    VoidCallback onClick,) {
+    VoidCallback? onClick,}) {
     _currentOverlay?.remove();
 
     OverlayEntry overlayEntry = OverlayEntry(
@@ -37,7 +37,7 @@ class CustomToast {
               ),
               child: Row(
                 children: [
-                  Image.asset(Assets.icons.success.path,
+                  Image.asset(imagePath ?? Assets.icons.success.path,
                       width: ToastConstants.iconSize,
                       height: ToastConstants.iconSize),
                   SizedBox(width: 8.w),
@@ -57,7 +57,7 @@ class CustomToast {
                     onTap: onClick,
                     child: RichText(
                       text: TextSpan(
-                        text: clickableText == null ? '' : clickableText.tr(),
+                        text: clickableText ?? '',
                         style: Styles().getCaptionSemiBoldStyle(
                             color: Theme.of(context).primaryColor),
                       ),

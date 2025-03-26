@@ -1,8 +1,11 @@
 part of 'auth_bloc.dart';
 
-abstract class AuthEvent extends Equatable {
+abstract class AuthEvent {
   const AuthEvent();
+}
 
-  @override
-  List<Object> get props => [];
+class SignUpBtnEvent extends AuthEvent {
+  final SignupRequestModel signupRequestModel;
+
+ const SignUpBtnEvent({required this.signupRequestModel});
 }

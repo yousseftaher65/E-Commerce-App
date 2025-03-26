@@ -175,7 +175,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 width: 328.w,
                                 child: Text(
                                   onboardingData[index]["description"]!,
-                                  style: Styles().getBody2RegulerStyle(
+                                  style: Styles().getBody2RegularStyle(
                                       color: Theme.of(context).hoverColor),
                                   textAlign: TextAlign.center,
                                 ),
