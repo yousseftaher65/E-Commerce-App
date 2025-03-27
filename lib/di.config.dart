@@ -16,6 +16,7 @@ import 'features/auth/data/datasources/auth_data_source.dart' as _i703;
 import 'features/auth/data/datasources/auth_data_source_imple.dart' as _i25;
 import 'features/auth/data/repositories/auth_repo_imple.dart' as _i384;
 import 'features/auth/domain/repositories/auth_repo.dart' as _i416;
+import 'features/auth/domain/usecases/signin_usecase.dart' as _i925;
 import 'features/auth/domain/usecases/signup_usecase.dart' as _i100;
 import 'features/auth/presentation/bloc/auth_bloc.dart' as _i363;
 
@@ -37,7 +38,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i384.AuthRepoImple(authDS: gh<_i703.AuthDataSource>()));
     gh.factory<_i100.SignupUsecase>(
         () => _i100.SignupUsecase(authRepo: gh<_i416.AuthRepo>()));
-    gh.factory<_i363.AuthBloc>(() => _i363.AuthBloc(gh<_i100.SignupUsecase>()));
+    gh.factory<_i925.SigninUsecase>(
+        () => _i925.SigninUsecase(authRepo: gh<_i416.AuthRepo>()));
+    gh.factory<_i363.AuthBloc>(() => _i363.AuthBloc(
+          gh<_i100.SignupUsecase>(),
+          gh<_i925.SigninUsecase>(),
+        ));
     return this;
   }
 }

@@ -21,7 +21,13 @@ class AuthRepoImple implements AuthRepo {
     } */
 
     var res = await authDS.signup(request: request);
-    return res.fold(
-        (failure) => Left(failure), (response) => Right(response));
+    return res.fold((failure) => Left(failure), (response) => Right(response));
+  }
+
+  @override
+  Future<Either<Failure, AuthResponseEntity>> signin(
+      {required String email, required String password}) async {
+    var res = await authDS.signin(email: email, password: password);
+    return res.fold((failure) => Left(failure), (response) => Right(response));
   }
 }

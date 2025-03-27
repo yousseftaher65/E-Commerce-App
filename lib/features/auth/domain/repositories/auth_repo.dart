@@ -5,4 +5,5 @@ import 'package:ecommerce_pojo/features/auth/domain/entities/auth_response_entit
 
 abstract class AuthRepo {
   Future<Either<Failure,AuthResponseEntity>> signup({required SignupRequestModel? request});
+  Future<Either<Failure,AuthResponseEntity>> signin({required String email , required String password});
 }
