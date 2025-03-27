@@ -9,3 +9,10 @@ class SignUpBtnEvent extends AuthEvent {
 
  const SignUpBtnEvent({required this.signupRequestModel});
 }
+
+class SigninBtnEvent extends AuthEvent {
+  final String email;
+  final String password;
+
+  const SigninBtnEvent({required this.email, required this.password});
+}

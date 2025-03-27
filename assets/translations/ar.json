@@ -36,7 +36,7 @@
     "email_verification": "التحقق من البريد الإلكتروني",
     "resend": "إعادة إرسال الرمز",
     "proceed": "المتابعة",
-    "forget_password": "نسيت كلمة المرور",
+    "forget_password": "هل نسيت كلمة المرور؟",
     "email_confirmation": "تأكيد البريد الإلكتروني",
     "email_confirmation_content": "أدخل عنوان بريدك الإلكتروني للتحقق.",
     "create_password": "إنشاء كلمة مرور",

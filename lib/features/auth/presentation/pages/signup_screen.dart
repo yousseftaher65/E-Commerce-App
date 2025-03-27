@@ -64,12 +64,12 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
+     onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
+          leadingWidth: 0.w,
+          leading: const SizedBox.shrink(),
           title: Theme.of(context).brightness == Brightness.dark
               ? Image.asset(
                   Assets.logos.appLogoDark.path,
@@ -123,7 +123,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         SizedBox(height: 8.h),
                         GestureDetector(
                           onTap: () {
-                            context.push(PageRouteName.login);
+                            context.go(PageRouteName.login);
                           },
                           child: TextRichWidget(
                               firstText: AppStrings.alreadyHaveAccount,

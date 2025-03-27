@@ -58,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   Future.delayed(const Duration(milliseconds: 1750), () {
                     if (context.mounted) {
                       state.isFirstTime
-                          ? context.go(PageRouteName.signup)
+                          ? context.go(PageRouteName.login)
                           : context.go(PageRouteName.onboarding);
                     }
                   });

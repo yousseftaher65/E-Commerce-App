@@ -4,5 +4,8 @@ import 'package:ecommerce_pojo/features/auth/data/models/auth_response_model.dar
 import 'package:ecommerce_pojo/features/auth/data/models/signup_request_model.dart';
 
 abstract class AuthDataSource {
-  Future<Either<Failure, AuthResponseModel>> signup({SignupRequestModel? request});
+  Future<Either<Failure, AuthResponseModel>> signup(
+      {SignupRequestModel? request});
+  Future<Either<Failure, AuthResponseModel>> signin(
+      {required String email, required String password});
 }
