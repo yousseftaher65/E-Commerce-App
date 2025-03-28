@@ -9,8 +9,9 @@ class SplashInitial extends SplashState {}
 
 class SplashLoadedState extends SplashState {
   final bool isFirstTime;
+  final String token;
 
-  SplashLoadedState({required this.isFirstTime});
+  SplashLoadedState({required this.isFirstTime , required this.token});
 
   @override
   List<Object?> get props => [isFirstTime];
