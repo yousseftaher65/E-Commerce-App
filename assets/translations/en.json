@@ -165,5 +165,7 @@
     "arabic": "Arabic",
     "english": "English",
     "retry": "Retry",
-    "create_account": "Create Account"
+    "create_account": "Create Account",
+    "send" : "Send",
+    "forgot_password_app_bar" : "Forgot Password"
 }

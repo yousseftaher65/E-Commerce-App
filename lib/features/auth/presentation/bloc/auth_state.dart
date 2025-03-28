@@ -3,19 +3,42 @@ part of 'auth_bloc.dart';
 class AuthState {
   RequestState? signUpRequestState;
   RequestState? signinRequestState;
+  RequestState? forgotPasswordRequestState;
+  RequestState? resetCodeRequestState;
+  RequestState? newPasswordRequestState;
+  ResetCodeResponseModel? resetCodeResponseModel;
   AuthResponseEntity? entity;
   Failure? failure;
-  AuthState({this.signUpRequestState, this.entity, this.failure , this.signinRequestState});
+  AuthState(
+      {this.signUpRequestState,
+      this.entity,
+      this.failure,
+      this.signinRequestState,
+      this.forgotPasswordRequestState,
+      this.resetCodeRequestState,
+      this.newPasswordRequestState,
+      this.resetCodeResponseModel});
 
   AuthState copyWith({
     RequestState? signUpRequestState,
     RequestState? signinRequestState,
+    RequestState? forgotPasswordRequestState,
+    RequestState? resetCodeRequestState,
+    RequestState? newPasswordRequestState,
+    ResetCodeResponseModel? resetCodeResponseModel,
     AuthResponseEntity? entity,
     Failure? failure,
   }) {
     return AuthState(
       signUpRequestState: signUpRequestState ?? this.signUpRequestState,
       signinRequestState: signinRequestState ?? this.signinRequestState,
+      forgotPasswordRequestState:
+          forgotPasswordRequestState ?? this.forgotPasswordRequestState,
+      resetCodeRequestState:
+          resetCodeRequestState ?? this.resetCodeRequestState,
+       newPasswordRequestState: newPasswordRequestState ?? this.newPasswordRequestState,   
+      resetCodeResponseModel:
+          resetCodeResponseModel ?? this.resetCodeResponseModel,
       entity: entity ?? this.entity,
       failure: failure ?? this.failure,
     );
@@ -23,7 +46,13 @@ class AuthState {
 }
 
 class AuthInitial extends AuthState {
-  AuthInitial() : super(signUpRequestState: RequestState.init , signinRequestState: RequestState.init);
+  AuthInitial()
+      : super(
+            signUpRequestState: RequestState.init,
+            signinRequestState: RequestState.init,
+            forgotPasswordRequestState: RequestState.init,
+            resetCodeRequestState: RequestState.init,
+            newPasswordRequestState: RequestState.init);
 }
 
 /// Represents the state of a request.

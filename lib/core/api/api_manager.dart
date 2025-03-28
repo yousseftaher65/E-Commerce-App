@@ -61,12 +61,13 @@ class ApiManager {
   
   Future<Response> putRequest({
     required String endPoint,
+    Map<String, dynamic>? body,
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
   }) {
     try {
       return dio.put(endPoint,
-          queryParameters: params, options: Options(headers: headers));
+          queryParameters: params, data: body,  options: Options(headers: headers));
     } on DioException catch (e) {
       throw Exception('Failed to get data: ${e.message}');
     }
