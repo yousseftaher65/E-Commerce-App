@@ -11,7 +11,7 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
 
   Future<void> _onOnboardingComplete(
       OnboardingComplete event, Emitter<OnboardingState> emit) async {
-    await SharedPreferenceHelper.saveOnBoarding();
+     SharedPreferenceHelper.setBool('onBoarding', false);
     emit(OnboardingFinished()); // Use a state to notify the UI
   }
 }

@@ -15,8 +15,9 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   }
 
   Future<void> _onInit(Init event, Emitter<SplashState> emit) async {
-    bool isFirstTime = await SharedPreferenceHelper.getOnBoarding() ?? false;
-    emit(SplashLoadedState(isFirstTime: isFirstTime));
+    bool isFirstTime = SharedPreferenceHelper.getBool('onBoarding' , defaultValue: true) ?? false;
+    String token = SharedPreferenceHelper.getString('token') ?? '';
+    emit(SplashLoadedState(isFirstTime: isFirstTime , token: token));
   }
 
   Future<void> _onCheckInternetConnectionEvent(

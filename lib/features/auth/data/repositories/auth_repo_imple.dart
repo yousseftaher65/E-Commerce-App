@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_pojo/core/errors/failure.dart';
+import 'package:ecommerce_pojo/core/helpers/shared_preference.dart';
 import 'package:ecommerce_pojo/features/auth/data/datasources/auth_data_source.dart';
 import 'package:ecommerce_pojo/features/auth/data/models/reset_code_response_model.dart';
 import 'package:ecommerce_pojo/features/auth/data/models/signup_request_model.dart';
@@ -29,7 +30,10 @@ class AuthRepoImple implements AuthRepo {
   Future<Either<Failure, AuthResponseEntity>> signin(
       {required String email, required String password}) async {
     var res = await authDS.signin(email: email, password: password);
-    return res.fold((failure) => Left(failure), (response) => Right(response));
+    return res.fold((failure) => Left(failure), (response) async{
+     await SharedPreferenceHelper.setString('token', response.token ?? '');
+      return Right(response);
+    });
   }
 
   @override

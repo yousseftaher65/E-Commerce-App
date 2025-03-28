@@ -14,7 +14,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,8 +22,7 @@ void main() async {
   CheckInternetConnection().init();
   Bloc.observer = MyBlocObserver();
   configureDependencies();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool initialIsDarkMode = prefs.getBool('isDarkMode') ?? false;
+  bool initialIsDarkMode = SharedPreferenceHelper.getBool('isDarkMode') ?? false;
   runApp(
     ChangeNotifierProvider(
       create: (context) => ThemeProvider(initialIsDarkMode),
