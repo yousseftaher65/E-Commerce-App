@@ -34,8 +34,8 @@ class AppStrings {
   static String confirmPasswordHint = 'confirm_password_hint'.tr();
   static String getStarted = 'get_started'.tr();
   static String emailVerficationToast = 'email_verfication_toast'.tr();
-  static String emailVerficationContent = 'email_verfication_content'.tr();
-  static String emailVerficationTitle = 'email_verfication_title'.tr();
+  static String emailVerficationContent = 'email_verification_content'.tr();
+  static String emailVerficationTitle = 'email_verification'.tr();
   static String resend = 'resend'.tr();
   static String proceed = 'proceed'.tr();
   static String forgetPassword = 'forget_password'.tr();
@@ -176,4 +176,6 @@ class AppStrings {
   static String arabic = 'arabic'.tr();
   static String retry = 'retry'.tr();
   static String createAccount = 'create_account'.tr();
+  static String send = 'send'.tr();
+  static String forgotPasswordAppBar = 'forgot_password_app_bar'.tr();
 }

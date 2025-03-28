@@ -167,5 +167,7 @@
     "retry": "حاول مرة اخرى",
     "arabic": "العربية",
     "english": "الإنجليزية",
-    "create_account": "إنشاء حساب"
+    "create_account": "إنشاء حساب",
+    "send" : "ارسل",
+    "forgot_password_app_bar" : "نسيت كلمة المرور"
 }
