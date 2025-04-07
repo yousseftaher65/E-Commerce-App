@@ -167,5 +167,15 @@
     "retry": "Retry",
     "create_account": "Create Account",
     "send" : "Send",
-    "forgot_password_app_bar" : "Forgot Password"
+    "forgot_password_app_bar" : "Forgot Password",
+    "read_less": "Read Less",
+    "free_shipping": "Free Shipping",
+    "top_rated": "Top Rated",
+    "best_seller": "Best Seller",
+    "new_arrival": "New Arrival",
+    "hot_deals": "Hot Deals",
+    "special_offers": "Special Offers",
+    "special_discount": "Special Discount",
+    "special_price": "Special Price",
+    "special_offer": "Special Offer"
 }

@@ -6,11 +6,13 @@ class ProductCounter extends StatelessWidget {
   final int counter;
   final void Function(int) add;
   final void Function(int) remove;
-  const ProductCounter(
-      {super.key,
-      required this.counter,
-      required this.add,
-      required this.remove});
+
+  const ProductCounter({
+    super.key,
+    required this.counter,
+    required this.add,
+    required this.remove,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +29,15 @@ class ProductCounter extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           GestureDetector(
-            onTap: () => remove(counter),
+            onTap: () {
+              debugPrint('Remove button tapped');
+              remove(1);
+            },
             child: Icon(
               Icons.remove_rounded,
-              color: counter > 0 ? Theme.of(context).cardColor : Theme.of(context).hintColor,
+              color: counter > 1
+                  ? Theme.of(context).cardColor
+                  : Theme.of(context).hintColor,
               size: 24.sp,
             ),
           ),
@@ -38,17 +45,19 @@ class ProductCounter extends StatelessWidget {
           Text(
             counter.toString(),
             style: Styles()
-                .getBody1MeduimStyle(color:  Theme.of(context).cardColor),
+                .getBody1MeduimStyle(color: Theme.of(context).cardColor),
           ),
           const Spacer(),
           GestureDetector(
             onTap: () {
-               add(counter);
-               
+              debugPrint('Add button tapped');
+              add(1);
             },
             child: Icon(
               Icons.add_rounded,
-              color: counter >= 10 ? Theme.of(context).hintColor : Theme.of(context).cardColor,
+              color: counter >= 10
+                  ? Theme.of(context).hintColor
+                  : Theme.of(context).cardColor,
               size: 24.sp,
             ),
           ),

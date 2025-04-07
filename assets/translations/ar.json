@@ -169,5 +169,15 @@
     "english": "الإنجليزية",
     "create_account": "إنشاء حساب",
     "send" : "ارسل",
-    "forgot_password_app_bar" : "نسيت كلمة المرور"
+    "forgot_password_app_bar" : "نسيت كلمة المرور",
+    "read_less" : "قراءة اقل",
+    "free_shipping" : "شحن مجاني",
+    "top_rated" : "الاعلى تقييما",
+    "best_seller" : "الاعلى مبيعا",
+    "new_arrival" : "الوصول الجديد",
+    "hot_deals" : "العروض الحرة",
+    "special_offers" : "العروض الخاصة",
+    "special_discount" : "خصم خاص",
+    "special_price" : "سعر خاص",
+    "special_offer" : "عرض خاص"
 }

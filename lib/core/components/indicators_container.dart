@@ -5,7 +5,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class IndicatorsContainer extends StatefulWidget {
   final PageController controller;
   final int pagesCount;
-  const IndicatorsContainer({super.key , required this.controller , required this.pagesCount});
+  const IndicatorsContainer(
+      {super.key, required this.controller, required this.pagesCount});
 
   @override
   State<IndicatorsContainer> createState() => _IndicatorsContainerState();
@@ -35,7 +36,9 @@ class _IndicatorsContainerState extends State<IndicatorsContainer> {
         onDotClicked: (index) {
           setState(() {
             selectedIndex = index;
-            widget.controller.jumpToPage(index);
+            widget.controller.animateToPage(index,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeIn);
           });
         },
       ),

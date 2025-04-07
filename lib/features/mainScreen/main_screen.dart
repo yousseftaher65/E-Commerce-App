@@ -16,6 +16,12 @@ class MainScreenState extends State<MainScreen> {
   int selectedIndex = 0; // Tracks the active tab
   @override
   Widget build(BuildContext context) {
+    // Get the current route location
+    final currentLocation =
+        GoRouter.of(context).routerDelegate.currentConfiguration.fullPath;
+
+    // Update the selectedIndex based on the current route
+    selectedIndex = getSelectedIndex(currentLocation);
     return Scaffold(
       body: widget.child,
       bottomNavigationBar: BottomNavigationBar(
@@ -73,6 +79,23 @@ class MainScreenState extends State<MainScreen> {
       case 4:
         GoRouter.of(context).go(PageRouteName.profile);
         break;
+    }
+  }
+
+  int getSelectedIndex(String location) {
+    switch (location) {
+      case PageRouteName.home:
+        return 0;
+      case PageRouteName.categories:
+        return 1;
+      case PageRouteName.cart:
+        return 2;
+      case PageRouteName.wishlist:
+        return 3;
+      case PageRouteName.profile:
+        return 4;
+      default:
+        return 0; // Default to Home
     }
   }
 }

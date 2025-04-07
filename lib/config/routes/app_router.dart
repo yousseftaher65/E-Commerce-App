@@ -4,6 +4,7 @@ import 'package:ecommerce_pojo/features/auth/presentation/pages/signin_screen.da
 import 'package:ecommerce_pojo/features/auth/presentation/pages/signup_screen.dart';
 import 'package:ecommerce_pojo/features/mainScreen/main_screen.dart';
 import 'package:ecommerce_pojo/features/onboarding/presentation/pages/onBoarding_screen.dart';
+import 'package:ecommerce_pojo/features/product/presentation/pages/product_details_screen.dart';
 import 'package:ecommerce_pojo/features/splash/presentation/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -102,12 +103,14 @@ class GoRouterConfig {
         ],
       ),
       GoRoute(
-        path: PageRouteName.productDetails,
-        pageBuilder: (_, GoRouterState state) => getCustomTransitionPage(
-          state: state,
-          child: const Placeholder(),
-        ),
-      ),
+          path: PageRouteName.productDetails,
+          pageBuilder: (_, GoRouterState state) {
+            final productId = state.extra as String;
+            return getCustomTransitionPage(
+              state: state,
+              child: ProductDetailsScreen(productId: productId,),
+            );
+          }),
       GoRoute(
         path: PageRouteName.checkoutSipping,
         pageBuilder: (_, GoRouterState state) => getCustomTransitionPage(
