@@ -22,6 +22,14 @@ import 'features/auth/domain/usecases/reset_code_usecase.dart' as _i476;
 import 'features/auth/domain/usecases/signin_usecase.dart' as _i925;
 import 'features/auth/domain/usecases/signup_usecase.dart' as _i100;
 import 'features/auth/presentation/bloc/auth_bloc.dart' as _i363;
+import 'features/product/data/datasources/product_data_source.dart' as _i196;
+import 'features/product/data/datasources/product_data_source_imple.dart'
+    as _i692;
+import 'features/product/data/repositories/product_repo_imple.dart' as _i490;
+import 'features/product/domain/repositories/product_repo.dart' as _i920;
+import 'features/product/domain/usecases/product_details_usecase.dart' as _i439;
+import 'features/product/domain/usecases/product_usecase.dart' as _i720;
+import 'features/product/presentation/bloc/product_bloc.dart' as _i363;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -37,24 +45,36 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i237.ApiManager>(() => _i237.ApiManager());
     gh.factory<_i703.AuthDataSource>(
         () => _i25.AuthDataSourceImple(apiManager: gh<_i237.ApiManager>()));
+    gh.factory<_i196.ProductDataSource>(
+        () => _i692.ProductDataSourceImple(apiManager: gh<_i237.ApiManager>()));
     gh.factory<_i416.AuthRepo>(
         () => _i384.AuthRepoImple(authDS: gh<_i703.AuthDataSource>()));
-    gh.factory<_i100.SignupUsecase>(
-        () => _i100.SignupUsecase(authRepo: gh<_i416.AuthRepo>()));
-    gh.factory<_i925.SigninUsecase>(
-        () => _i925.SigninUsecase(authRepo: gh<_i416.AuthRepo>()));
     gh.factory<_i993.ForgotPasswordUsecase>(
         () => _i993.ForgotPasswordUsecase(authRepo: gh<_i416.AuthRepo>()));
-    gh.factory<_i476.ResetCodeUsecase>(
-        () => _i476.ResetCodeUsecase(authRepo: gh<_i416.AuthRepo>()));
     gh.factory<_i1010.NewPasswordUsecase>(
         () => _i1010.NewPasswordUsecase(authRepo: gh<_i416.AuthRepo>()));
+    gh.factory<_i476.ResetCodeUsecase>(
+        () => _i476.ResetCodeUsecase(authRepo: gh<_i416.AuthRepo>()));
+    gh.factory<_i925.SigninUsecase>(
+        () => _i925.SigninUsecase(authRepo: gh<_i416.AuthRepo>()));
+    gh.factory<_i100.SignupUsecase>(
+        () => _i100.SignupUsecase(authRepo: gh<_i416.AuthRepo>()));
+    gh.factory<_i920.ProductRepo>(
+        () => _i490.ProductRepoImple(gh<_i196.ProductDataSource>()));
     gh.factory<_i363.AuthBloc>(() => _i363.AuthBloc(
           gh<_i100.SignupUsecase>(),
           gh<_i925.SigninUsecase>(),
           gh<_i993.ForgotPasswordUsecase>(),
           gh<_i476.ResetCodeUsecase>(),
           gh<_i1010.NewPasswordUsecase>(),
+        ));
+    gh.factory<_i439.ProductDetailsUsecase>(
+        () => _i439.ProductDetailsUsecase(gh<_i920.ProductRepo>()));
+    gh.factory<_i720.ProductUsecase>(
+        () => _i720.ProductUsecase(gh<_i920.ProductRepo>()));
+    gh.factory<_i363.ProductBloc>(() => _i363.ProductBloc(
+          gh<_i720.ProductUsecase>(),
+          gh<_i439.ProductDetailsUsecase>(),
         ));
     return this;
   }
