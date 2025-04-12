@@ -2,9 +2,12 @@ import 'package:ecommerce_pojo/config/routes/page_route_name.dart';
 import 'package:ecommerce_pojo/features/auth/presentation/pages/forgot_password_screen.dart';
 import 'package:ecommerce_pojo/features/auth/presentation/pages/signin_screen.dart';
 import 'package:ecommerce_pojo/features/auth/presentation/pages/signup_screen.dart';
+import 'package:ecommerce_pojo/features/mainScreen/category/presentation/pages/categories_tab.dart';
+import 'package:ecommerce_pojo/features/mainScreen/category/presentation/pages/sup_categories_screen.dart';
 import 'package:ecommerce_pojo/features/mainScreen/main_screen.dart';
 import 'package:ecommerce_pojo/features/onboarding/presentation/pages/onBoarding_screen.dart';
 import 'package:ecommerce_pojo/features/product/presentation/pages/product_details_screen.dart';
+import 'package:ecommerce_pojo/features/product/presentation/pages/products_screen.dart';
 import 'package:ecommerce_pojo/features/splash/presentation/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -97,8 +100,28 @@ class GoRouterConfig {
             path: PageRouteName.categories,
             pageBuilder: (_, GoRouterState state) => getCustomTransitionPage(
               state: state,
-              child: const Placeholder(),
+              child: const CategoriesTab(),
             ),
+          ),
+          GoRoute(
+              path: PageRouteName.subCategories,
+              pageBuilder: (_, GoRouterState state) {
+                var data = state.extra as Map<String, dynamic>;
+                return getCustomTransitionPage(
+                  state: state,
+                  child: SubCategoriesScreen(
+                    categoryId: data['categoryId'] ?? '',
+                    categoryName: data['categoryName'] ?? '',
+                  ),
+                );
+              }),
+          GoRoute(
+            path: PageRouteName.productsList,
+            pageBuilder: (_, GoRouterState state) {
+              final title = state.extra as String;
+              return getCustomTransitionPage(
+                  state: state, child: ProductsScreen(title: title));
+            },
           ),
         ],
       ),
@@ -108,7 +131,9 @@ class GoRouterConfig {
             final productId = state.extra as String;
             return getCustomTransitionPage(
               state: state,
-              child: ProductDetailsScreen(productId: productId,),
+              child: ProductDetailsScreen(
+                productId: productId,
+              ),
             );
           }),
       GoRoute(

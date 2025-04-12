@@ -14,7 +14,7 @@ class PageRouteName {
   static const String wishlist = '/wishlist';
   static const String categories = '/categories';
   static const String myCart = '/my-cart';
-  static const String supCategories = '/sup-categories';
+  static const String subCategories = '/sub-categories';
   static const String productsList = '/products-list';
   static const String search = '/search';
   static const String productDetails = '/product-details';
