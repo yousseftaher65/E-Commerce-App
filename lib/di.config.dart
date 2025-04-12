@@ -30,6 +30,14 @@ import 'features/product/domain/repositories/product_repo.dart' as _i920;
 import 'features/product/domain/usecases/product_details_usecase.dart' as _i439;
 import 'features/product/domain/usecases/product_usecase.dart' as _i720;
 import 'features/product/presentation/bloc/product_bloc.dart' as _i363;
+import 'features/shared/data/datasources/category_data_source.dart' as _i812;
+import 'features/shared/data/datasources/category_data_source_impl.dart'
+    as _i249;
+import 'features/shared/data/repositories/category_repo_impl.dart' as _i255;
+import 'features/shared/domain/repositories/category_repo.dart' as _i745;
+import 'features/shared/domain/usecases/category_usecase.dart' as _i654;
+import 'features/shared/domain/usecases/sub_category_usecase.dart' as _i643;
+import 'features/shared/presentation/bloc/category_bloc.dart' as _i1021;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -43,10 +51,22 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.lazySingleton<_i237.ApiManager>(() => _i237.ApiManager());
+    gh.factory<_i812.CategoryDataSource>(
+        () => _i249.CategoryDataSourceImpl(gh<_i237.ApiManager>()));
     gh.factory<_i703.AuthDataSource>(
         () => _i25.AuthDataSourceImple(apiManager: gh<_i237.ApiManager>()));
     gh.factory<_i196.ProductDataSource>(
         () => _i692.ProductDataSourceImple(apiManager: gh<_i237.ApiManager>()));
+    gh.factory<_i745.CategoryRepo>(
+        () => _i255.CategoryRepoImpl(gh<_i812.CategoryDataSource>()));
+    gh.factory<_i654.CategoryUsecase>(
+        () => _i654.CategoryUsecase(gh<_i745.CategoryRepo>()));
+    gh.factory<_i643.SubCategoryUsecase>(
+        () => _i643.SubCategoryUsecase(gh<_i745.CategoryRepo>()));
+    gh.factory<_i1021.CategoryBloc>(() => _i1021.CategoryBloc(
+          gh<_i654.CategoryUsecase>(),
+          gh<_i643.SubCategoryUsecase>(),
+        ));
     gh.factory<_i416.AuthRepo>(
         () => _i384.AuthRepoImple(authDS: gh<_i703.AuthDataSource>()));
     gh.factory<_i993.ForgotPasswordUsecase>(
