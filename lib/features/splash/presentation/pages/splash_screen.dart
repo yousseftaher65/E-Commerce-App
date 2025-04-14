@@ -57,10 +57,12 @@ class _SplashScreenState extends State<SplashScreen> {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
                   Future.delayed(const Duration(milliseconds: 1750), () {
                     if (context.mounted) {
-                       if (state.token.isEmpty) {
-                        context.go(PageRouteName.login);
+                       if (state.token.isEmpty && state.isFirstTime) {
+                        context.go(PageRouteName.onboarding);
                       } else if (state.isFirstTime) {
                         context.go(PageRouteName.onboarding);
+                      }else if (state.token.isEmpty) {
+                        context.go(PageRouteName.login);
                       } else {
                         context.go(PageRouteName.home);
                       }
