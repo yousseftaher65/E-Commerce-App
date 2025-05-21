@@ -17,8 +17,8 @@ class SubCategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: getIt<CategoryBloc>()
+    return BlocProvider(
+      create: (context)=> getIt<CategoryBloc>()
         ..add(GetSubCategoriesEvent(categoryId: categoryId)),
       child: BlocConsumer<CategoryBloc, CategoryState>(
         listener: (context, state) {

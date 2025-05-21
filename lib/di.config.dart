@@ -22,6 +22,20 @@ import 'features/auth/domain/usecases/reset_code_usecase.dart' as _i476;
 import 'features/auth/domain/usecases/signin_usecase.dart' as _i925;
 import 'features/auth/domain/usecases/signup_usecase.dart' as _i100;
 import 'features/auth/presentation/bloc/auth_bloc.dart' as _i363;
+import 'features/mainScreen/cart/data/datasources/cart_data_source.dart'
+    as _i570;
+import 'features/mainScreen/cart/data/datasources/cart_data_source_impl.dart'
+    as _i997;
+import 'features/mainScreen/cart/data/repositories/cart_repo_impl.dart'
+    as _i281;
+import 'features/mainScreen/cart/domain/repositories/cart_repo.dart' as _i858;
+import 'features/mainScreen/cart/domain/usecases/add_to_cart_usecase.dart'
+    as _i512;
+import 'features/mainScreen/cart/domain/usecases/get_cart_items_usecase.dart'
+    as _i222;
+import 'features/mainScreen/cart/domain/usecases/remove_from_cart_usecase.dart'
+    as _i801;
+import 'features/mainScreen/cart/presentation/bloc/cart_bloc.dart' as _i908;
 import 'features/product/data/datasources/product_data_source.dart' as _i196;
 import 'features/product/data/datasources/product_data_source_imple.dart'
     as _i692;
@@ -51,8 +65,12 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.lazySingleton<_i237.ApiManager>(() => _i237.ApiManager());
+    gh.factory<_i570.CartDataSource>(
+        () => _i997.CartDataSourceImpl(gh<_i237.ApiManager>()));
     gh.factory<_i812.CategoryDataSource>(
         () => _i249.CategoryDataSourceImpl(gh<_i237.ApiManager>()));
+    gh.factory<_i858.CartRepo>(
+        () => _i281.CartRepoImpl(gh<_i570.CartDataSource>()));
     gh.factory<_i703.AuthDataSource>(
         () => _i25.AuthDataSourceImple(apiManager: gh<_i237.ApiManager>()));
     gh.factory<_i196.ProductDataSource>(
@@ -67,6 +85,12 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i654.CategoryUsecase>(),
           gh<_i643.SubCategoryUsecase>(),
         ));
+    gh.factory<_i512.AddToCartUsecase>(
+        () => _i512.AddToCartUsecase(gh<_i858.CartRepo>()));
+    gh.factory<_i222.GetCartItemsUsecase>(
+        () => _i222.GetCartItemsUsecase(gh<_i858.CartRepo>()));
+    gh.factory<_i801.RemoveFromCartUsecase>(
+        () => _i801.RemoveFromCartUsecase(gh<_i858.CartRepo>()));
     gh.factory<_i416.AuthRepo>(
         () => _i384.AuthRepoImple(authDS: gh<_i703.AuthDataSource>()));
     gh.factory<_i993.ForgotPasswordUsecase>(
@@ -90,6 +114,11 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i439.ProductDetailsUsecase>(
         () => _i439.ProductDetailsUsecase(gh<_i920.ProductRepo>()));
+    gh.factory<_i908.CartBloc>(() => _i908.CartBloc(
+          gh<_i512.AddToCartUsecase>(),
+          gh<_i222.GetCartItemsUsecase>(),
+          gh<_i801.RemoveFromCartUsecase>(),
+        ));
     gh.factory<_i720.ProductUsecase>(
         () => _i720.ProductUsecase(gh<_i920.ProductRepo>()));
     gh.factory<_i363.ProductBloc>(() => _i363.ProductBloc(

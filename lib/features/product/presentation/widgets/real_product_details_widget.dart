@@ -8,12 +8,14 @@ import 'package:ecommerce_pojo/core/components/product_counter.dart';
 import 'package:ecommerce_pojo/core/utils/app_colors.dart';
 import 'package:ecommerce_pojo/core/utils/app_strings.dart';
 import 'package:ecommerce_pojo/core/utils/styles.dart';
+import 'package:ecommerce_pojo/features/mainScreen/cart/presentation/bloc/cart_bloc.dart';
 import 'package:ecommerce_pojo/features/product/data/models/product_model.dart';
 import 'package:ecommerce_pojo/features/product/presentation/widgets/color_options_widget.dart';
 import 'package:ecommerce_pojo/features/product/presentation/widgets/container_widget.dart';
 import 'package:ecommerce_pojo/features/product/presentation/widgets/rating_widget.dart';
 import 'package:ecommerce_pojo/features/product/presentation/widgets/size_options_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:readmore/readmore.dart';
@@ -296,7 +298,7 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                     color: Theme.of(context).cardColor),
                               ),
                               SizedBox(height: 8.h),
-                             const Skeleton.unite(child: ColorOption()),
+                              const Skeleton.unite(child: ColorOption()),
                               SizedBox(height: 12.h),
                               if (_isLoading ||
                                   (currentProductDetails?.category?.slug
@@ -348,6 +350,12 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                     child: Skeleton.leaf(
                                       child: CustomElevatedButton(
                                         onPressed: () {
+                                          context.read<CartBloc>()
+                                              .add(AddToCartEvent(
+                                                  productId:
+                                                      currentProductDetails
+                                                              ?.id ??
+                                                          ''));
                                           CustomToast.show(
                                               context: context,
                                               message: AppStrings.productToast,

@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:ecommerce_pojo/core/api/end_points.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -10,6 +13,7 @@ class ApiManager {
   ApiManager() {
     dio = Dio(BaseOptions(baseUrl: EndPoints.baseUrl));
     initInterceptors();
+    clinet();
   }
 
   initInterceptors() {
@@ -31,6 +35,21 @@ class ApiManager {
           return handler.next(error);
         },
       ),
+    );
+  }
+
+  clinet() {
+    /* dio.httpClientAdapter = IOHttpClientAdapter(
+      createHttpClient: () {
+        return HttpClient()..badCertificateCallback = (_, __, ___) => true;
+      },
+    ); */
+    dio.httpClientAdapter = IOHttpClientAdapter(
+      createHttpClient: () {
+        final client = HttpClient();
+        client.badCertificateCallback = (cert, host, port) => true;
+        return client;
+      },
     );
   }
 
@@ -58,7 +77,7 @@ class ApiManager {
       throw Exception('Failed to get data: ${e.message}');
     }
   }
-  
+
   Future<Response> putRequest({
     required String endPoint,
     Map<String, dynamic>? body,
@@ -67,7 +86,9 @@ class ApiManager {
   }) {
     try {
       return dio.put(endPoint,
-          queryParameters: params, data: body,  options: Options(headers: headers));
+          queryParameters: params,
+          data: body,
+          options: Options(headers: headers));
     } on DioException catch (e) {
       throw Exception('Failed to get data: ${e.message}');
     }
