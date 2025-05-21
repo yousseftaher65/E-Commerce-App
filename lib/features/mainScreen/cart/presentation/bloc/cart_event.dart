@@ -1,8 +1,18 @@
 part of 'cart_bloc.dart';
 
-abstract class CartEvent extends Equatable {
+abstract class CartEvent{
   const CartEvent();
+}
 
-  @override
-  List<Object> get props => [];
+
+class GetCartItemsEvent extends CartEvent {
+  const GetCartItemsEvent();
+}
+class AddToCartEvent extends CartEvent {
+  final String productId;
+  const AddToCartEvent({required this.productId});
+}
+class RemoveFromCartEvent extends CartEvent {
+  final String productId;
+  const RemoveFromCartEvent({required this.productId});
 }

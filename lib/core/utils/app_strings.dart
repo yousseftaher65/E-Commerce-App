@@ -51,7 +51,7 @@ class AppStrings {
   static String passwordCreatedSuccessfullyContent =
       'password_created_successfully_content'.tr();
   static String home = 'home'.tr();
-  static String myCart = 'myCart'.tr();
+  static String myCart = 'my_cart'.tr();
   static String profile = 'profile'.tr();
   static String wishlist = 'wishlist'.tr();
   static String categories = 'categories'.tr();
