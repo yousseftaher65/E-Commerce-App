@@ -9,6 +9,7 @@ import 'package:ecommerce_pojo/core/utils/app_colors.dart';
 import 'package:ecommerce_pojo/core/utils/app_strings.dart';
 import 'package:ecommerce_pojo/core/utils/styles.dart';
 import 'package:ecommerce_pojo/features/mainScreen/cart/presentation/bloc/cart_bloc.dart';
+import 'package:ecommerce_pojo/features/mainScreen/wishlist/presentation/bloc/wishlist_bloc.dart';
 import 'package:ecommerce_pojo/features/product/data/models/product_model.dart';
 import 'package:ecommerce_pojo/features/product/presentation/widgets/color_options_widget.dart';
 import 'package:ecommerce_pojo/features/product/presentation/widgets/container_widget.dart';
@@ -171,7 +172,26 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                           child: HeartButton(
                             size: 32,
                             isSelected: isFavorite,
-                            onTap: _isLoading ? null : favorite,
+                            onTap: _isLoading
+                                ? null
+                                : () {
+                                    favorite();
+                                    if (isFavorite) {
+                                      context.read<WishlistBloc>().add(
+                                            AddToWishlistEvent(
+                                                productId:
+                                                    currentProductDetails?.id ??
+                                                        ''),
+                                          );
+                                    } else {
+                                      context.read<WishlistBloc>().add(
+                                            RemoveFromWishlistEvent(
+                                                productId:
+                                                    currentProductDetails?.id ??
+                                                        ''),
+                                          );
+                                    }
+                                  },
                           ),
                         ),
                       ],
@@ -350,8 +370,8 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                     child: Skeleton.leaf(
                                       child: CustomElevatedButton(
                                         onPressed: () {
-                                          context.read<CartBloc>()
-                                              .add(AddToCartEvent(
+                                          context.read<CartBloc>().add(
+                                              AddToCartEvent(
                                                   productId:
                                                       currentProductDetails
                                                               ?.id ??

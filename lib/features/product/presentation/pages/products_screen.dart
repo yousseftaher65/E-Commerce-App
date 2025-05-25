@@ -3,6 +3,7 @@ import 'package:ecommerce_pojo/core/components/dummy_products_list.dart';
 import 'package:ecommerce_pojo/core/components/real_products_list.dart';
 import 'package:ecommerce_pojo/core/utils/styles.dart';
 import 'package:ecommerce_pojo/di.dart';
+import 'package:ecommerce_pojo/features/mainScreen/wishlist/presentation/bloc/wishlist_bloc.dart';
 import 'package:ecommerce_pojo/features/product/presentation/bloc/product_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,9 +25,17 @@ class ProductsScreen extends StatelessWidget {
               Styles().getBody2MeduimStyle(color: Theme.of(context).cardColor),
         ),
       ),
-      body: BlocProvider(
-        create: (context) => getIt<ProductBloc>()
-          ..add(GetAllProductsEvent(categoryId: categoryId, limit: limit ?? 0)),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => getIt<ProductBloc>()
+              ..add(GetAllProductsEvent(
+                  categoryId: categoryId, limit: limit ?? 0)),
+          ),
+          BlocProvider(
+            create: (context) => getIt<WishlistBloc>(),
+          ),
+        ],
         child: BlocConsumer<ProductBloc, ProductState>(
           listener: (context, state) {
             if (state.allProductsRequestState == RequestState.loading) {

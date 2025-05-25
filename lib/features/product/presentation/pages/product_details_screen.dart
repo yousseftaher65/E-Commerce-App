@@ -1,6 +1,7 @@
 import 'package:ecommerce_pojo/core/components/custom_alert_dialog.dart';
 import 'package:ecommerce_pojo/di.dart';
 import 'package:ecommerce_pojo/features/mainScreen/cart/presentation/bloc/cart_bloc.dart';
+import 'package:ecommerce_pojo/features/mainScreen/wishlist/presentation/bloc/wishlist_bloc.dart';
 import 'package:ecommerce_pojo/features/product/presentation/bloc/product_bloc.dart';
 import 'package:ecommerce_pojo/features/product/presentation/widgets/real_product_details_widget.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
         BlocProvider<CartBloc>(
           create: (context) => getIt<CartBloc>(),
+        ),
+        BlocProvider<WishlistBloc>(
+          create: (context) => getIt<WishlistBloc>(),
         ),
       ],
       child: BlocConsumer<ProductBloc, ProductState>(

@@ -6,6 +6,7 @@ import 'package:ecommerce_pojo/features/mainScreen/cart/presentation/pages/cart_
 import 'package:ecommerce_pojo/features/mainScreen/category/presentation/pages/categories_tab.dart';
 import 'package:ecommerce_pojo/features/mainScreen/category/presentation/pages/sup_categories_screen.dart';
 import 'package:ecommerce_pojo/features/mainScreen/main_screen.dart';
+import 'package:ecommerce_pojo/features/mainScreen/wishlist/presentation/pages/wishlist_tab.dart';
 import 'package:ecommerce_pojo/features/onboarding/presentation/pages/onBoarding_screen.dart';
 import 'package:ecommerce_pojo/features/product/presentation/pages/product_details_screen.dart';
 import 'package:ecommerce_pojo/features/product/presentation/pages/products_screen.dart';
@@ -94,7 +95,7 @@ class GoRouterConfig {
             path: PageRouteName.wishlist,
             pageBuilder: (_, GoRouterState state) => getCustomTransitionPage(
               state: state,
-              child: const Placeholder(),
+              child: const WishlistTab(),
             ),
           ),
           GoRoute(
