@@ -1,8 +1,19 @@
 part of 'wishlist_bloc.dart';
 
-abstract class WishlistEvent extends Equatable {
+abstract class WishlistEvent {
   const WishlistEvent();
+}
 
-  @override
-  List<Object> get props => [];
+class GetWishlistItemsEvent extends WishlistEvent {
+  const GetWishlistItemsEvent();
+}
+
+class AddToWishlistEvent extends WishlistEvent {
+  final String productId;
+  const AddToWishlistEvent({required this.productId});
+}
+
+class RemoveFromWishlistEvent extends WishlistEvent {
+  final String productId;
+  const RemoveFromWishlistEvent({required this.productId});
 }

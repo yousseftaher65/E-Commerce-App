@@ -36,6 +36,22 @@ import 'features/mainScreen/cart/domain/usecases/get_cart_items_usecase.dart'
 import 'features/mainScreen/cart/domain/usecases/remove_from_cart_usecase.dart'
     as _i801;
 import 'features/mainScreen/cart/presentation/bloc/cart_bloc.dart' as _i908;
+import 'features/mainScreen/wishlist/data/datasources/wishlist_data_source.dart'
+    as _i399;
+import 'features/mainScreen/wishlist/data/datasources/wishlist_data_source_impl.dart'
+    as _i595;
+import 'features/mainScreen/wishlist/data/repositories/wishlist_repo_impl.dart'
+    as _i975;
+import 'features/mainScreen/wishlist/domain/repositories/wishlist_repo.dart'
+    as _i269;
+import 'features/mainScreen/wishlist/domain/usecases/add_to_wishlist_usecase.dart'
+    as _i313;
+import 'features/mainScreen/wishlist/domain/usecases/get_wishlist_items_usecase.dart'
+    as _i893;
+import 'features/mainScreen/wishlist/domain/usecases/remove_from_wishlist_usecase.dart'
+    as _i911;
+import 'features/mainScreen/wishlist/presentation/bloc/wishlist_bloc.dart'
+    as _i549;
 import 'features/product/data/datasources/product_data_source.dart' as _i196;
 import 'features/product/data/datasources/product_data_source_imple.dart'
     as _i692;
@@ -69,8 +85,23 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i997.CartDataSourceImpl(gh<_i237.ApiManager>()));
     gh.factory<_i812.CategoryDataSource>(
         () => _i249.CategoryDataSourceImpl(gh<_i237.ApiManager>()));
+    gh.factory<_i399.WishlistDataSource>(
+        () => _i595.WishlistDataSourceImpl(gh<_i237.ApiManager>()));
+    gh.factory<_i269.WishlistRepo>(
+        () => _i975.WishlistRepoImpl(gh<_i399.WishlistDataSource>()));
     gh.factory<_i858.CartRepo>(
         () => _i281.CartRepoImpl(gh<_i570.CartDataSource>()));
+    gh.factory<_i313.AddToWishlistUsecase>(
+        () => _i313.AddToWishlistUsecase(gh<_i269.WishlistRepo>()));
+    gh.factory<_i893.GetWishlistItemsUsecase>(
+        () => _i893.GetWishlistItemsUsecase(gh<_i269.WishlistRepo>()));
+    gh.factory<_i911.RemoveFromWishlistUsecase>(
+        () => _i911.RemoveFromWishlistUsecase(gh<_i269.WishlistRepo>()));
+    gh.factory<_i549.WishlistBloc>(() => _i549.WishlistBloc(
+          gh<_i313.AddToWishlistUsecase>(),
+          gh<_i893.GetWishlistItemsUsecase>(),
+          gh<_i911.RemoveFromWishlistUsecase>(),
+        ));
     gh.factory<_i703.AuthDataSource>(
         () => _i25.AuthDataSourceImple(apiManager: gh<_i237.ApiManager>()));
     gh.factory<_i196.ProductDataSource>(

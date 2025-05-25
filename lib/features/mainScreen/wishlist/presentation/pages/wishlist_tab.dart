@@ -5,24 +5,22 @@ import 'package:ecommerce_pojo/core/utils/app_strings.dart';
 import 'package:ecommerce_pojo/core/utils/assets.gen.dart';
 import 'package:ecommerce_pojo/core/utils/styles.dart';
 import 'package:ecommerce_pojo/di.dart';
-import 'package:ecommerce_pojo/features/mainScreen/cart/presentation/bloc/cart_bloc.dart';
 import 'package:ecommerce_pojo/features/mainScreen/cart/presentation/widgets/cart_product_card.dart';
-import 'package:ecommerce_pojo/features/mainScreen/cart/presentation/widgets/order_info_card.dart';
-import 'package:ecommerce_pojo/features/mainScreen/cart/presentation/widgets/voucher_code_widget.dart';
+import 'package:ecommerce_pojo/features/mainScreen/wishlist/presentation/bloc/wishlist_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-class CartTab extends StatefulWidget {
-  const CartTab({super.key});
+class WishlistTab extends StatefulWidget {
+  const WishlistTab({super.key});
 
   @override
-  State<CartTab> createState() => _CartTabState();
+  State<WishlistTab> createState() => _WishlistTabState();
 }
 
-class _CartTabState extends State<CartTab> {
+class _WishlistTabState extends State<WishlistTab> {
   int selectedItemsCount = 0;
   Set<String> selectedItems = {};
 
@@ -40,26 +38,30 @@ class _CartTabState extends State<CartTab> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<CartBloc>()..add(const GetCartItemsEvent()),
-      child: BlocConsumer<CartBloc, CartState>(
+      create: (context) =>
+          getIt<WishlistBloc>()..add(const GetWishlistItemsEvent()),
+      child: BlocConsumer<WishlistBloc, WishlistState>(
         listener: (context, state) {
-          if (state.getCartItems == CartRequestState.loading) {
+          if (state.getWishlistItemsRequestState ==
+              WishlistRequestState.loading) {
             context.loaderOverlay.show();
-          } else if (state.getCartItems == CartRequestState.loaded) {
+          } else if (state.getWishlistItemsRequestState ==
+              WishlistRequestState.loaded) {
             context.loaderOverlay.hide();
-            // Handle loaded state
-          } else if (state.getCartItems == CartRequestState.error) {
+          } else if (state.getWishlistItemsRequestState ==
+              WishlistRequestState.error) {
             context.loaderOverlay.hide();
-            // Handle error state
             CustomAlertDialog(
               message: state.failure?.message,
             );
           }
         },
         builder: (context, state) {
-          var data = state.cartItemModel?.data?.products;
-          if (state.getCartItems == CartRequestState.loaded ||
-              state.removeFromCartRequestState == CartRequestState.loaded) {
+          var data = state.wishlistItemModel?.data;
+          if (state.getWishlistItemsRequestState ==
+                  WishlistRequestState.loaded ||
+              state.removeFromWishlistRequestState ==
+                  WishlistRequestState.loaded) {
             if (data == null || data.isEmpty) {
               return Center(
                 child: Padding(
@@ -106,22 +108,6 @@ class _CartTabState extends State<CartTab> {
                   style: Styles()
                       .getBody2MeduimStyle(color: Theme.of(context).cardColor),
                 ),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      showModalBottomSheet(
-                          context: context,
-                          builder: (_) {
-                            return const VoucherCodeWidget();
-                          });
-                    },
-                    child: Text(
-                      AppStrings.voucherCode,
-                      style: Styles().getBody2MeduimStyle(
-                          color: Theme.of(context).primaryColor),
-                    ),
-                  ),
-                ],
               ),
               body: Padding(
                 padding: EdgeInsets.only(
@@ -134,34 +120,33 @@ class _CartTabState extends State<CartTab> {
                             return CartProductCard(
                               onTap: () {
                                 context.push(PageRouteName.productDetails,
-                                    extra: data[index].product?.id ?? '');
+                                    extra: data[index].id ?? '');
                               },
                               onDelete: () {
                                 setState(() {
-                                  var productId = data[index].product?.id;
+                                  var productId = data[index].id;
 
                                   if (selectedItems.contains(productId)) {
                                     selectedItems.remove(productId);
                                     selectedItemsCount = selectedItems
                                         .length; // Update the count
                                   }
-                                  context.read<CartBloc>().add(
-                                        RemoveFromCartEvent(
+                                  context.read<WishlistBloc>().add(
+                                        RemoveFromWishlistEvent(
                                           productId: productId ?? '',
                                         ),
                                       );
                                   data.removeAt(index);
                                 });
                               },
-                              count: data[index].count,
-                              imagePath: data[index].product?.imageCover,
-                              productName: data[index].product?.title,
+                              //count: data[index].,
+                              imagePath: data[index].imageCover,
+                              productName: data[index].title,
                               productPrice: data[index].price.toString(),
-                              productId: data[index].product?.id,
-                              onCheckboxChanged: (isSelected) {
-                                updateSelectedItems(
-                                    isSelected, data[index].product?.id);
-                              },
+                              productId: data[index].id,
+                             /*  onCheckboxChanged: (isSelected) {
+                                updateSelectedItems(isSelected, data[index].id);
+                              }, */
                             );
                           },
                           separatorBuilder: (context, index) => SizedBox(
@@ -169,20 +154,6 @@ class _CartTabState extends State<CartTab> {
                               ),
                           itemCount: data.length),
                     ),
-                    SizedBox(height: 16.h),
-                    OrderInfoCard(
-                        totalCartPrice:
-                            "${state.cartItemModel?.data?.totalCartPrice.toString()}"),
-                    CustomElevatedButton(
-                      text: selectedItemsCount > 0
-                          ? "${AppStrings.checkout} ($selectedItemsCount selected)"
-                          : AppStrings.checkout,
-                      onPressed: selectedItemsCount > 0
-                          ? () {
-                              // Handle checkout logic
-                            }
-                          : () {}, // Provide an empty function when no items are selected
-                    )
                   ],
                 ),
               ),

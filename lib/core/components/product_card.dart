@@ -3,7 +3,9 @@ import 'package:ecommerce_pojo/config/routes/page_route_name.dart';
 import 'package:ecommerce_pojo/core/components/heart_button.dart';
 import 'package:ecommerce_pojo/core/utils/app_colors.dart';
 import 'package:ecommerce_pojo/core/utils/styles.dart';
+import 'package:ecommerce_pojo/features/mainScreen/wishlist/presentation/bloc/wishlist_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -49,7 +51,8 @@ class _ProductCardState extends State<ProductCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(PageRouteName.productDetails, extra: widget.productId ?? '');
+        context.push(PageRouteName.productDetails,
+            extra: widget.productId ?? '');
       },
       child: Skeletonizer(
         enableSwitchAnimation: true,
@@ -85,7 +88,23 @@ class _ProductCardState extends State<ProductCard> {
                         child: HeartButton(
                           size: 24,
                           isSelected: favorited,
-                          onTap: favorite,
+                          onTap: () {
+                            favorite();
+                            if (favorited) {
+                              context.read<WishlistBloc>().add(
+                                    AddToWishlistEvent(
+                                      productId: widget.productId ?? '',
+                                    ),
+                                  );
+                            } else {
+                              favorite;
+                              context.read<WishlistBloc>().add(
+                                    RemoveFromWishlistEvent(
+                                      productId: widget.productId ?? '',
+                                    ),
+                                  );
+                            }
+                          },
                         ),
                       ),
                     ),

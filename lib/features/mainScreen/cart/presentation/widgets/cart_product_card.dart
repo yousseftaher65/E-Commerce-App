@@ -11,13 +11,14 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 class CartProductCard extends StatefulWidget {
   final VoidCallback onDelete;
+  final VoidCallback onTap;
   final String? imagePath;
   final String? productName;
   final String? productPrice;
   final String? productOldPrice;
   final String? productId;
   final int? count;
-  final ValueChanged<bool> onCheckboxChanged;
+  final ValueChanged<bool>? onCheckboxChanged;
   const CartProductCard(
       {super.key,
       this.imagePath,
@@ -27,7 +28,8 @@ class CartProductCard extends StatefulWidget {
       this.productId,
       this.count,
       required this.onDelete,
-      required this.onCheckboxChanged});
+      required this.onTap,
+      this.onCheckboxChanged});
 
   @override
   State<CartProductCard> createState() => _CartProductCardState();
@@ -64,10 +66,11 @@ class _CartProductCardState extends State<CartProductCard> {
       child: Row(
         children: [
           GestureDetector(
-            onTap: () {
+            onTap: widget.onTap,
+            /*  onTap: () {
               context.push(PageRouteName.productDetails,
                   extra: widget.productId ?? '');
-            },
+            }, */
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12.r),
               child: Skeleton.replace(
@@ -139,21 +142,24 @@ class _CartProductCardState extends State<CartProductCard> {
             ),
           ),
           Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Checkbox(
-                  activeColor: AppColors.cyan,
-                  checkColor: AppColors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4.r),
-                  ),
-                  value: isChecked,
-                  onChanged: (value) {
-                    setState(() {
-                      isChecked = value!;
-                    });
-                    widget.onCheckboxChanged(isChecked);
-                  }),
+              if (widget.onCheckboxChanged != null) ...[
+                Checkbox(
+                    activeColor: AppColors.cyan,
+                    checkColor: AppColors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4.r),
+                    ),
+                    value: isChecked,
+                    onChanged: (value) {
+                      setState(() {
+                        isChecked = value!;
+                      });
+                      widget.onCheckboxChanged!(isChecked);
+                    }),
+                const Spacer()
+              ],
               GestureDetector(
                 onTap: () {
                   widget.onDelete();
