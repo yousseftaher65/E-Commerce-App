@@ -103,7 +103,7 @@
     "select_province": "اختر المحافظة",
     "select_city": "اختر المدينة",
     "street_address": "عنوان الشارع",
-    "street_address_hint": "عنوان الشارع",
+    "street_address_hint": "e.g., 123 Main St",
     "card_holder_name": "اسم حامل البطاقة",
     "card_holder_name_hint": "أدخل اسم حامل البطاقة",
     "card_number": "رقم البطاقة",

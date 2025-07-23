@@ -26,12 +26,11 @@ class _BannerWidgetState extends State<BannerWidget> {
       CarouselSliderController();
   @override
   Widget build(BuildContext context) {
-    return // Static Card
-        Container(
+    return Container(
       width: 328.w,
       height: 148.h,
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(24.r),
       ),
       child: Stack(

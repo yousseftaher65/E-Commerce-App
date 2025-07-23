@@ -36,6 +36,18 @@ import 'features/mainScreen/cart/domain/usecases/get_cart_items_usecase.dart'
 import 'features/mainScreen/cart/domain/usecases/remove_from_cart_usecase.dart'
     as _i801;
 import 'features/mainScreen/cart/presentation/bloc/cart_bloc.dart' as _i908;
+import 'features/mainScreen/profile/data/datasources/profile_datasource.dart'
+    as _i444;
+import 'features/mainScreen/profile/data/datasources/profile_datasource_impl.dart'
+    as _i595;
+import 'features/mainScreen/profile/data/repositories/shipping_address_repo_impl.dart'
+    as _i482;
+import 'features/mainScreen/profile/domain/repositories/shipping_address_repo.dart'
+    as _i926;
+import 'features/mainScreen/profile/domain/usecases/shipping_address_usecase.dart'
+    as _i389;
+import 'features/mainScreen/profile/presentation/bloc/profile_bloc.dart'
+    as _i296;
 import 'features/mainScreen/wishlist/data/datasources/wishlist_data_source.dart'
     as _i399;
 import 'features/mainScreen/wishlist/data/datasources/wishlist_data_source_impl.dart'
@@ -97,6 +109,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i893.GetWishlistItemsUsecase(gh<_i269.WishlistRepo>()));
     gh.factory<_i911.RemoveFromWishlistUsecase>(
         () => _i911.RemoveFromWishlistUsecase(gh<_i269.WishlistRepo>()));
+    gh.factory<_i444.ProfileDataSource>(
+        () => _i595.ProfileDatasourceImpl(apiManager: gh<_i237.ApiManager>()));
     gh.factory<_i549.WishlistBloc>(() => _i549.WishlistBloc(
           gh<_i313.AddToWishlistUsecase>(),
           gh<_i893.GetWishlistItemsUsecase>(),
@@ -112,6 +126,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i654.CategoryUsecase(gh<_i745.CategoryRepo>()));
     gh.factory<_i643.SubCategoryUsecase>(
         () => _i643.SubCategoryUsecase(gh<_i745.CategoryRepo>()));
+    gh.factory<_i926.ShippingAddressRepo>(() => _i482.ShippingAddressRepoImpl(
+        dataSource: gh<_i444.ProfileDataSource>()));
     gh.factory<_i1021.CategoryBloc>(() => _i1021.CategoryBloc(
           gh<_i654.CategoryUsecase>(),
           gh<_i643.SubCategoryUsecase>(),
@@ -136,6 +152,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i100.SignupUsecase(authRepo: gh<_i416.AuthRepo>()));
     gh.factory<_i920.ProductRepo>(
         () => _i490.ProductRepoImple(gh<_i196.ProductDataSource>()));
+    gh.factory<_i389.ShippingAddressUsecase>(() => _i389.ShippingAddressUsecase(
+        shippingAddressRepo: gh<_i926.ShippingAddressRepo>()));
+    gh.factory<_i296.ProfileBloc>(
+        () => _i296.ProfileBloc(gh<_i389.ShippingAddressUsecase>()));
     gh.factory<_i363.AuthBloc>(() => _i363.AuthBloc(
           gh<_i100.SignupUsecase>(),
           gh<_i925.SigninUsecase>(),

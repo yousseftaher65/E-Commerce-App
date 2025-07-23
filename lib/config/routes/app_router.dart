@@ -1,4 +1,5 @@
 import 'package:ecommerce_pojo/config/routes/page_route_name.dart';
+import 'package:ecommerce_pojo/di.dart';
 import 'package:ecommerce_pojo/features/auth/presentation/pages/forgot_password_screen.dart';
 import 'package:ecommerce_pojo/features/auth/presentation/pages/signin_screen.dart';
 import 'package:ecommerce_pojo/features/auth/presentation/pages/signup_screen.dart';
@@ -7,12 +8,16 @@ import 'package:ecommerce_pojo/features/mainScreen/category/presentation/pages/c
 import 'package:ecommerce_pojo/features/mainScreen/category/presentation/pages/sup_categories_screen.dart';
 import 'package:ecommerce_pojo/features/mainScreen/home/presentation/pages/home_tab.dart';
 import 'package:ecommerce_pojo/features/mainScreen/main_screen.dart';
+import 'package:ecommerce_pojo/features/mainScreen/profile/presentation/bloc/profile_bloc.dart';
+import 'package:ecommerce_pojo/features/mainScreen/profile/presentation/pages/profile_tab.dart';
+import 'package:ecommerce_pojo/features/mainScreen/profile/presentation/pages/shipping_address_page.dart';
 import 'package:ecommerce_pojo/features/mainScreen/wishlist/presentation/pages/wishlist_tab.dart';
 import 'package:ecommerce_pojo/features/onboarding/presentation/pages/onBoarding_screen.dart';
 import 'package:ecommerce_pojo/features/product/presentation/pages/product_details_screen.dart';
 import 'package:ecommerce_pojo/features/product/presentation/pages/products_screen.dart';
 import 'package:ecommerce_pojo/features/splash/presentation/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 BuildContext? get currentContext_ => GoRouterConfig.navigatorKey.currentContext;
@@ -89,7 +94,7 @@ class GoRouterConfig {
             path: PageRouteName.profile,
             pageBuilder: (_, GoRouterState state) => getCustomTransitionPage(
               state: state,
-              child: const Placeholder(),
+              child: const ProfileTab(),
             ),
           ),
           GoRoute(
@@ -160,6 +165,34 @@ class GoRouterConfig {
           child: const Placeholder(),
         ),
       ),
+      GoRoute(
+          path: PageRouteName.shippingAddress,
+          name: PageRouteName.shippingAddress,
+          pageBuilder: (_, GoRouterState state) {
+            return getCustomTransitionPage(
+              state: state,
+              child: BlocProvider(
+                create: (context) => getIt<ProfileBloc>(),
+                child: const ShippingAddressPage(),
+              ), // Replace with actual ShippingAddressPage
+            );
+          }),
+      GoRoute(
+          path: PageRouteName.paymentMethod,
+          pageBuilder: (_, GoRouterState state) {
+            return getCustomTransitionPage(
+              state: state,
+              child: const Placeholder(),
+            );
+          }),
+      GoRoute(
+          path: PageRouteName.orderHistory,
+          pageBuilder: (_, GoRouterState state) {
+            return getCustomTransitionPage(
+              state: state,
+              child: const Placeholder(),
+            );
+          }),
     ],
   );
 
