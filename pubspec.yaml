@@ -22,7 +22,6 @@ dependencies:
   animate_do :
   animated_toggle_switch :
   cached_network_image :
-  #connectivity_plus :
   carousel_slider:
   flutter_svg:
   shared_preferences :
@@ -41,6 +40,8 @@ dependencies:
   internet_connection_checker_plus: ^2.7.0
   provider:
   skeletonizer:
+  url_launcher: 
+  pay_with_paymob: ^1.4.0
 
 flutter_gen:
   output: lib/core/utils/

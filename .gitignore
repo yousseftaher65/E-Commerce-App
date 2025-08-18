@@ -30,6 +30,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+lib/core/helpers/payment_constants.dart
 
 # Symbolication related
 app.*.symbols

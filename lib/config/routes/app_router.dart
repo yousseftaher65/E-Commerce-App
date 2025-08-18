@@ -19,6 +19,7 @@ import 'package:ecommerce_pojo/features/splash/presentation/pages/splash_screen.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pay_with_paymob/pay_with_paymob.dart';
 
 BuildContext? get currentContext_ => GoRouterConfig.navigatorKey.currentContext;
 
@@ -183,6 +184,23 @@ class GoRouterConfig {
             return getCustomTransitionPage(
               state: state,
               child: const Placeholder(),
+            );
+          }),
+      GoRoute(
+          path: PageRouteName.payment,
+          name: PageRouteName.payment,
+          pageBuilder: (_, GoRouterState state) {
+            var data = state.extra as Map<String, dynamic>;
+            /* final price = state.extra as double; //
+            final onPaymentSuccess = state.extra as void Function();
+            final onPaymentError = state.extra as void Function(); */
+            return getCustomTransitionPage(
+              state: state,
+              child: PaymentView(
+                onPaymentError: data['onPaymentError'] as void Function(),
+                onPaymentSuccess: data['onPaymentSuccess'] as void Function(),
+                price: data['price'] as double, // The extra data is of type double, not int.
+              ),
             );
           }),
       GoRoute(

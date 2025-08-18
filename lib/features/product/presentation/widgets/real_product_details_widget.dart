@@ -5,6 +5,7 @@ import 'package:ecommerce_pojo/core/components/custom_toast.dart';
 import 'package:ecommerce_pojo/core/components/heart_button.dart';
 import 'package:ecommerce_pojo/core/components/indicators_container.dart';
 import 'package:ecommerce_pojo/core/components/product_counter.dart';
+import 'package:ecommerce_pojo/core/helpers/payment_constants.dart';
 import 'package:ecommerce_pojo/core/utils/app_colors.dart';
 import 'package:ecommerce_pojo/core/utils/app_strings.dart';
 import 'package:ecommerce_pojo/core/utils/styles.dart';
@@ -19,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pay_with_paymob/pay_with_paymob.dart';
 import 'package:readmore/readmore.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -46,6 +48,24 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
     if (_isLoading) {
       _fetchProductDetails();
     }
+    PaymentData.initialize(
+      apiKey: PaymentConstants
+          .paymentApiKey, // Required: Found under Dashboard -> Settings -> Account Info -> API Key
+      iframeId: PaymentConstants
+          .iframeId, // Required: Found under Developers -> iframes
+      integrationCardId: PaymentConstants
+          .integrationCardId, // Required: Found under Developers -> Payment Integrations -> Online Card ID
+      integrationMobileWalletId: PaymentConstants
+          .integrationMobileWalletId, // Required: Found under Developers -> Payment Integrations -> Mobile Wallet ID
+
+      /*  // Optional User Data
+      userData: UserData(
+        email: "User Email", // Optional: Defaults to 'NA'
+        phone: "User Phone", // Optional: Defaults to 'NA'
+        name: "User First Name", // Optional: Defaults to 'NA'
+        lastName: "User Last Name", // Optional: Defaults to 'NA'
+      ), */
+    );
   }
 
   Future<void> _fetchProductDetails() async {
@@ -357,8 +377,34 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                     child: Skeleton.leaf(
                                       child: CustomElevatedButton(
                                         text: AppStrings.buyNow,
-                                        onPressed:
-                                            () {}, // Add your buy now logic
+                                        onPressed: () {
+                                          // Handle checkout logic
+                                          context.pushNamed(
+                                              PageRouteName.payment,
+                                              extra: {
+                                                'price': currentProductDetails
+                                                        ?.priceAfterDiscount ??
+                                                    currentProductDetails?.price
+                                                        ?.toDouble() ??
+                                                    0.0,
+                                                'onPaymentSuccess': () {
+                                                  // i want here to check if the payment is successful
+                                                  // clear the cart and show a success message
+                                                  /*  CustomToast.show(
+                                                context: context,
+                                                message: AppStrings.paymentSuccess,
+                                              ); */
+                                                },
+                                                'onPaymentError': () {
+                                                  // i want here to check if the payment is error
+                                                  // show an error message
+                                                  /*  CustomToast.show(
+                                                context: context,
+                                                message: AppStrings.paymentError,
+                                              ); */
+                                                },
+                                              });
+                                        }, // Add your buy now logic
                                         backgroundColor: Theme.of(context)
                                             .scaffoldBackgroundColor,
                                         textColor: Theme.of(context).cardColor,

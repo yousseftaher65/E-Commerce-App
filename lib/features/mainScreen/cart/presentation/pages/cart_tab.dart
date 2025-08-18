@@ -1,6 +1,7 @@
 import 'package:ecommerce_pojo/config/routes/page_route_name.dart';
 import 'package:ecommerce_pojo/core/components/custom_alert_dialog.dart';
 import 'package:ecommerce_pojo/core/components/custom_elevated_button.dart';
+import 'package:ecommerce_pojo/core/helpers/payment_constants.dart';
 import 'package:ecommerce_pojo/core/utils/app_strings.dart';
 import 'package:ecommerce_pojo/core/utils/assets.gen.dart';
 import 'package:ecommerce_pojo/core/utils/styles.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:pay_with_paymob/pay_with_paymob.dart';
 
 class CartTab extends StatefulWidget {
   const CartTab({super.key});
@@ -35,6 +37,29 @@ class _CartTabState extends State<CartTab> {
       }
       selectedItemsCount = selectedItems.length;
     });
+  }
+
+  @override
+  void initState() {
+    PaymentData.initialize(
+      apiKey: PaymentConstants
+          .paymentApiKey, // Required: Found under Dashboard -> Settings -> Account Info -> API Key
+      iframeId: PaymentConstants
+          .iframeId, // Required: Found under Developers -> iframes
+      integrationCardId: PaymentConstants
+          .integrationCardId, // Required: Found under Developers -> Payment Integrations -> Online Card ID
+      integrationMobileWalletId: PaymentConstants
+          .integrationMobileWalletId, // Required: Found under Developers -> Payment Integrations -> Mobile Wallet ID
+
+      /*  // Optional User Data
+      userData: UserData(
+        email: "User Email", // Optional: Defaults to 'NA'
+        phone: "User Phone", // Optional: Defaults to 'NA'
+        name: "User First Name", // Optional: Defaults to 'NA'
+        lastName: "User Last Name", // Optional: Defaults to 'NA'
+      ), */
+    );
+    super.initState();
   }
 
   @override
@@ -180,6 +205,28 @@ class _CartTabState extends State<CartTab> {
                       onPressed: selectedItemsCount > 0
                           ? () {
                               // Handle checkout logic
+                              context.pushNamed(PageRouteName.payment, extra: {
+                                'price': state
+                                        .cartItemModel?.data?.totalCartPrice
+                                        ?.toDouble() ??
+                                    0.0,
+                                'onPaymentSuccess': () {
+                                  // i want here to check if the payment is successful
+                                  // clear the cart and show a success message
+                                  /*  CustomToast.show(
+                                                context: context,
+                                                message: AppStrings.paymentSuccess,
+                                              ); */
+                                },
+                                'onPaymentError': () {
+                                  // i want here to check if the payment is error
+                                  // show an error message
+                                  /*  CustomToast.show(
+                                                context: context,
+                                                message: AppStrings.paymentError,
+                                              ); */
+                                },
+                              });
                             }
                           : () {}, // Provide an empty function when no items are selected
                     )

@@ -27,4 +27,5 @@ class PageRouteName {
   static const String paymentMethod = '/payment-method';
   static const String orderHistory = '/order-history';
   static const String changePassword = '/change-password';
+  static const String payment = '/payment';
 }
