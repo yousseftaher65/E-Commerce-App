@@ -187,13 +187,13 @@ class _HomeTabState extends State<HomeTab> {
                         colorsNum: 3,
                         title: data?.title ?? '',
                         image: data?.imageCover ?? '',
-                        price: data?.priceAfterDiscount != null
-                            ? "\$${data?.priceAfterDiscount.toString()}"
+                        price: data?.price != null
+                            ? "\$${data?.price.toString()}"
                             : "\$${data?.price.toString()}",
-                        oldPrice: data?.priceAfterDiscount == null
+                        oldPrice: data?.price == null
                             ? ''
                             : "\$${data?.price.toString()}",
-                        productId: data?.id ?? '',
+                        productId: data?.id?.name ?? '',
                       );
                     },
                   );

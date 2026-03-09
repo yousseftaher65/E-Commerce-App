@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image_ce/cached_network_image.dart';
 import 'package:ecommerce_pojo/config/routes/page_route_name.dart';
 import 'package:ecommerce_pojo/core/components/product_counter.dart';
 import 'package:ecommerce_pojo/core/utils/app_colors.dart';
@@ -85,7 +85,7 @@ class _CartProductCardState extends State<CartProductCard> {
                       child: Container(color: Colors.grey[300]),
                     ),
                   ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  errorBuilder: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
             ),

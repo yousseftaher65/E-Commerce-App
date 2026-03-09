@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image_ce/cached_network_image.dart';
 import 'package:ecommerce_pojo/config/routes/page_route_name.dart';
 import 'package:ecommerce_pojo/core/components/custom_elevated_button.dart';
 import 'package:ecommerce_pojo/core/components/custom_toast.dart';
@@ -156,7 +156,7 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                 child: Container(color: Colors.grey[300]),
                               ),
                             ),
-                            errorWidget: (context, url, error) =>
+                            errorBuilder: (context, url, error) =>
                                 const Center(child: Icon(Icons.error)),
                           ),
                         );
@@ -200,14 +200,14 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                       context.read<WishlistBloc>().add(
                                             AddToWishlistEvent(
                                                 productId:
-                                                    currentProductDetails?.id ??
+                                                    currentProductDetails?.id?.name ??
                                                         ''),
                                           );
                                     } else {
                                       context.read<WishlistBloc>().add(
                                             RemoveFromWishlistEvent(
                                                 productId:
-                                                    currentProductDetails?.id ??
+                                                    currentProductDetails?.id?.name ??
                                                         ''),
                                           );
                                     }
@@ -276,16 +276,16 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                         _isLoading
                                             ? '\$---.--'
                                             : currentProductDetails
-                                                        ?.priceAfterDiscount !=
+                                                        ?.price !=
                                                     null
-                                                ? "\$${currentProductDetails?.priceAfterDiscount}"
+                                                ? "\$${currentProductDetails?.price}"
                                                 : "\$${currentProductDetails?.price ?? '--.--'}",
                                         style: Styles().getHeadline3BoldStyle(
                                             color: Theme.of(context).cardColor),
                                       ),
                                       Text(
                                         currentProductDetails
-                                                    ?.priceAfterDiscount ==
+                                                    ?.price ==
                                                 null
                                             ? ''
                                             : "\$${currentProductDetails?.price ?? ''}",
@@ -383,7 +383,7 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                               PageRouteName.payment,
                                               extra: {
                                                 'price': currentProductDetails
-                                                        ?.priceAfterDiscount ??
+                                                        ?.price ??
                                                     currentProductDetails?.price
                                                         ?.toDouble() ??
                                                     0.0,
@@ -420,7 +420,7 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                               AddToCartEvent(
                                                   productId:
                                                       currentProductDetails
-                                                              ?.id ??
+                                                              ?.id?.name ??
                                                           ''));
                                           CustomToast.show(
                                               context: context,

@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image_ce/cached_network_image.dart';
 import 'package:ecommerce_pojo/config/routes/page_route_name.dart';
 import 'package:ecommerce_pojo/core/components/heart_button.dart';
 import 'package:ecommerce_pojo/core/utils/app_colors.dart';
@@ -76,7 +76,7 @@ class _ProductCardState extends State<ProductCard> {
                         height: 138.h,
                         width: 160.w,
                         fit: BoxFit.fitWidth,
-                        errorWidget: (context, url, error) =>
+                        errorBuilder: (context, url, error) =>
                             const Icon(Icons.error),
                       ),
                     ),

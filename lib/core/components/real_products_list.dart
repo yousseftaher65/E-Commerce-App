@@ -26,13 +26,13 @@ class RealProductsList extends StatelessWidget {
           colorsNum: 3,
           title: product?.title ?? '',
           image: product?.imageCover ?? '',
-          price: product?.priceAfterDiscount != null
-              ? "\$${product?.priceAfterDiscount.toString()}"
+          price: product?.price != null
+              ? "\$${product?.price.toString()}"
               : "\$${product?.price.toString()}",
-          oldPrice: product?.priceAfterDiscount == null
+          oldPrice: product?.price == null
               ? ''
               : "\$${product?.price.toString()}",
-              productId: product?.id ?? '',
+              productId: product?.id?.name ?? '',
         );
       },
       itemCount: itemCount ?? products?.length ?? 0,
