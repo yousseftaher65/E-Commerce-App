@@ -1,4 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format width=80
 
 // **************************************************************************
 // InjectableConfigGenerator
@@ -93,53 +94,32 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.lazySingleton<_i237.ApiManager>(() => _i237.ApiManager());
-    gh.factory<_i570.CartDataSource>(
-        () => _i997.CartDataSourceImpl(gh<_i237.ApiManager>()));
     gh.factory<_i812.CategoryDataSource>(
         () => _i249.CategoryDataSourceImpl(gh<_i237.ApiManager>()));
+    gh.factory<_i570.CartDataSource>(
+        () => _i997.CartDataSourceImpl(gh<_i237.ApiManager>()));
     gh.factory<_i399.WishlistDataSource>(
         () => _i595.WishlistDataSourceImpl(gh<_i237.ApiManager>()));
+    gh.factory<_i444.ProfileDataSource>(
+        () => _i595.ProfileDatasourceImpl(apiManager: gh<_i237.ApiManager>()));
     gh.factory<_i269.WishlistRepo>(
         () => _i975.WishlistRepoImpl(gh<_i399.WishlistDataSource>()));
-    gh.factory<_i858.CartRepo>(
-        () => _i281.CartRepoImpl(gh<_i570.CartDataSource>()));
+    gh.factory<_i196.ProductDataSource>(
+        () => _i692.ProductDataSourceImple(apiManager: gh<_i237.ApiManager>()));
+    gh.factory<_i920.ProductRepo>(
+        () => _i490.ProductRepoImple(gh<_i196.ProductDataSource>()));
+    gh.factory<_i703.AuthDataSource>(
+        () => _i25.AuthDataSourceImple(apiManager: gh<_i237.ApiManager>()));
+    gh.factory<_i416.AuthRepo>(
+        () => _i384.AuthRepoImple(authDS: gh<_i703.AuthDataSource>()));
     gh.factory<_i313.AddToWishlistUsecase>(
         () => _i313.AddToWishlistUsecase(gh<_i269.WishlistRepo>()));
     gh.factory<_i893.GetWishlistItemsUsecase>(
         () => _i893.GetWishlistItemsUsecase(gh<_i269.WishlistRepo>()));
     gh.factory<_i911.RemoveFromWishlistUsecase>(
         () => _i911.RemoveFromWishlistUsecase(gh<_i269.WishlistRepo>()));
-    gh.factory<_i444.ProfileDataSource>(
-        () => _i595.ProfileDatasourceImpl(apiManager: gh<_i237.ApiManager>()));
-    gh.factory<_i549.WishlistBloc>(() => _i549.WishlistBloc(
-          gh<_i313.AddToWishlistUsecase>(),
-          gh<_i893.GetWishlistItemsUsecase>(),
-          gh<_i911.RemoveFromWishlistUsecase>(),
-        ));
-    gh.factory<_i703.AuthDataSource>(
-        () => _i25.AuthDataSourceImple(apiManager: gh<_i237.ApiManager>()));
-    gh.factory<_i196.ProductDataSource>(
-        () => _i692.ProductDataSourceImple(apiManager: gh<_i237.ApiManager>()));
-    gh.factory<_i745.CategoryRepo>(
-        () => _i255.CategoryRepoImpl(gh<_i812.CategoryDataSource>()));
-    gh.factory<_i654.CategoryUsecase>(
-        () => _i654.CategoryUsecase(gh<_i745.CategoryRepo>()));
-    gh.factory<_i643.SubCategoryUsecase>(
-        () => _i643.SubCategoryUsecase(gh<_i745.CategoryRepo>()));
-    gh.factory<_i926.ShippingAddressRepo>(() => _i482.ShippingAddressRepoImpl(
-        dataSource: gh<_i444.ProfileDataSource>()));
-    gh.factory<_i1021.CategoryBloc>(() => _i1021.CategoryBloc(
-          gh<_i654.CategoryUsecase>(),
-          gh<_i643.SubCategoryUsecase>(),
-        ));
-    gh.factory<_i512.AddToCartUsecase>(
-        () => _i512.AddToCartUsecase(gh<_i858.CartRepo>()));
-    gh.factory<_i222.GetCartItemsUsecase>(
-        () => _i222.GetCartItemsUsecase(gh<_i858.CartRepo>()));
-    gh.factory<_i801.RemoveFromCartUsecase>(
-        () => _i801.RemoveFromCartUsecase(gh<_i858.CartRepo>()));
-    gh.factory<_i416.AuthRepo>(
-        () => _i384.AuthRepoImple(authDS: gh<_i703.AuthDataSource>()));
+    gh.factory<_i858.CartRepo>(
+        () => _i281.CartRepoImpl(gh<_i570.CartDataSource>()));
     gh.factory<_i993.ForgotPasswordUsecase>(
         () => _i993.ForgotPasswordUsecase(authRepo: gh<_i416.AuthRepo>()));
     gh.factory<_i1010.NewPasswordUsecase>(
@@ -150,12 +130,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i925.SigninUsecase(authRepo: gh<_i416.AuthRepo>()));
     gh.factory<_i100.SignupUsecase>(
         () => _i100.SignupUsecase(authRepo: gh<_i416.AuthRepo>()));
-    gh.factory<_i920.ProductRepo>(
-        () => _i490.ProductRepoImple(gh<_i196.ProductDataSource>()));
-    gh.factory<_i389.ShippingAddressUsecase>(() => _i389.ShippingAddressUsecase(
-        shippingAddressRepo: gh<_i926.ShippingAddressRepo>()));
-    gh.factory<_i296.ProfileBloc>(
-        () => _i296.ProfileBloc(gh<_i389.ShippingAddressUsecase>()));
+    gh.factory<_i745.CategoryRepo>(
+        () => _i255.CategoryRepoImpl(gh<_i812.CategoryDataSource>()));
+    gh.factory<_i926.ShippingAddressRepo>(() => _i482.ShippingAddressRepoImpl(
+        dataSource: gh<_i444.ProfileDataSource>()));
     gh.factory<_i363.AuthBloc>(() => _i363.AuthBloc(
           gh<_i100.SignupUsecase>(),
           gh<_i925.SigninUsecase>(),
@@ -163,18 +141,41 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i476.ResetCodeUsecase>(),
           gh<_i1010.NewPasswordUsecase>(),
         ));
+    gh.factory<_i720.ProductUsecase>(
+        () => _i720.ProductUsecase(gh<_i920.ProductRepo>()));
+    gh.factory<_i512.AddToCartUsecase>(
+        () => _i512.AddToCartUsecase(gh<_i858.CartRepo>()));
+    gh.factory<_i222.GetCartItemsUsecase>(
+        () => _i222.GetCartItemsUsecase(gh<_i858.CartRepo>()));
+    gh.factory<_i801.RemoveFromCartUsecase>(
+        () => _i801.RemoveFromCartUsecase(gh<_i858.CartRepo>()));
     gh.factory<_i439.ProductDetailsUsecase>(
         () => _i439.ProductDetailsUsecase(gh<_i920.ProductRepo>()));
+    gh.factory<_i389.ShippingAddressUsecase>(() => _i389.ShippingAddressUsecase(
+        shippingAddressRepo: gh<_i926.ShippingAddressRepo>()));
+    gh.factory<_i549.WishlistBloc>(() => _i549.WishlistBloc(
+          gh<_i313.AddToWishlistUsecase>(),
+          gh<_i893.GetWishlistItemsUsecase>(),
+          gh<_i911.RemoveFromWishlistUsecase>(),
+        ));
+    gh.factory<_i654.CategoryUsecase>(
+        () => _i654.CategoryUsecase(gh<_i745.CategoryRepo>()));
+    gh.factory<_i643.SubCategoryUsecase>(
+        () => _i643.SubCategoryUsecase(gh<_i745.CategoryRepo>()));
     gh.factory<_i908.CartBloc>(() => _i908.CartBloc(
           gh<_i512.AddToCartUsecase>(),
           gh<_i222.GetCartItemsUsecase>(),
           gh<_i801.RemoveFromCartUsecase>(),
         ));
-    gh.factory<_i720.ProductUsecase>(
-        () => _i720.ProductUsecase(gh<_i920.ProductRepo>()));
     gh.factory<_i363.ProductBloc>(() => _i363.ProductBloc(
           gh<_i720.ProductUsecase>(),
           gh<_i439.ProductDetailsUsecase>(),
+        ));
+    gh.factory<_i296.ProfileBloc>(
+        () => _i296.ProfileBloc(gh<_i389.ShippingAddressUsecase>()));
+    gh.factory<_i1021.CategoryBloc>(() => _i1021.CategoryBloc(
+          gh<_i654.CategoryUsecase>(),
+          gh<_i643.SubCategoryUsecase>(),
         ));
     return this;
   }

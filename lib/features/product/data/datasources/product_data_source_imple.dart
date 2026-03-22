@@ -13,7 +13,7 @@ class ProductDataSourceImple extends ProductDataSource {
   @override
   Future<Either<Failure, ProductModel>> getAllProducts({String? categoryId , int? limit}) async{
    try{
-     var res = await apiManager.getRequest(endPoint: EndPoints.products , params:{ if(categoryId != null ) 'category[in]' : categoryId, 'limit' : limit});
+     var res = await apiManager.getRequest(endPoint: EndPoints.products , params:{ if(categoryId != null ) 'category[in]' : categoryId, if(limit != null) 'limit' : limit});
      if(res.statusCode! >= 200 && res.statusCode! < 300){
        return Right(ProductModel.fromJson(res.data));
      }else{

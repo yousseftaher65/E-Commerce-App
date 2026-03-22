@@ -200,14 +200,14 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                       context.read<WishlistBloc>().add(
                                             AddToWishlistEvent(
                                                 productId:
-                                                    currentProductDetails?.id?.name ??
+                                                    currentProductDetails?.id ??
                                                         ''),
                                           );
                                     } else {
                                       context.read<WishlistBloc>().add(
                                             RemoveFromWishlistEvent(
                                                 productId:
-                                                    currentProductDetails?.id?.name ??
+                                                    currentProductDetails?.id ??
                                                         ''),
                                           );
                                     }
@@ -275,8 +275,7 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                       Text(
                                         _isLoading
                                             ? '\$---.--'
-                                            : currentProductDetails
-                                                        ?.price !=
+                                            : currentProductDetails?.price !=
                                                     null
                                                 ? "\$${currentProductDetails?.price}"
                                                 : "\$${currentProductDetails?.price ?? '--.--'}",
@@ -284,9 +283,7 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                             color: Theme.of(context).cardColor),
                                       ),
                                       Text(
-                                        currentProductDetails
-                                                    ?.price ==
-                                                null
+                                        currentProductDetails?.price == null
                                             ? ''
                                             : "\$${currentProductDetails?.price ?? ''}",
                                         style: Styles()
@@ -342,7 +339,8 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                               SizedBox(height: 12.h),
                               if (_isLoading ||
                                   (currentProductDetails?.category?.slug
-                                          ?.contains('fashion') ??
+                                          .toString()
+                                          .contains('fashion') ??
                                       false)) ...[
                                 Text(
                                   // Static text
@@ -383,10 +381,7 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                               PageRouteName.payment,
                                               extra: {
                                                 'price': currentProductDetails
-                                                        ?.price ??
-                                                    currentProductDetails?.price
-                                                        ?.toDouble() ??
-                                                    0.0,
+                                                        ?.price?.toDouble() ?? 0.0,
                                                 'onPaymentSuccess': () {
                                                   // i want here to check if the payment is successful
                                                   // clear the cart and show a success message
@@ -420,7 +415,7 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                               AddToCartEvent(
                                                   productId:
                                                       currentProductDetails
-                                                              ?.id?.name ??
+                                                              ?.id ??
                                                           ''));
                                           CustomToast.show(
                                               context: context,

@@ -193,7 +193,7 @@ class _HomeTabState extends State<HomeTab> {
                         oldPrice: data?.price == null
                             ? ''
                             : "\$${data?.price.toString()}",
-                        productId: data?.id?.name ?? '',
+                        productId: data?.id ?? '',
                       );
                     },
                   );
