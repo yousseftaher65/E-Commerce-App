@@ -14,11 +14,11 @@ class BannerWidget extends StatefulWidget {
 
 class _BannerWidgetState extends State<BannerWidget> {
   final List<String> banners = [
-    Assets.images.banner.path,
-    Assets.images.banner.path,
-    Assets.images.banner.path,
-    Assets.images.banner.path,
-    Assets.images.banner.path,
+    Assets.images.carouselBanner.path,
+    Assets.images.carouselBanner.path,
+    Assets.images.carouselBanner.path,
+    Assets.images.carouselBanner.path,
+    Assets.images.carouselBanner.path,
   ];
 
   int _currentBanner = 0;
@@ -30,24 +30,25 @@ class _BannerWidgetState extends State<BannerWidget> {
       width: 328.w,
       height: 148.h,
       decoration: BoxDecoration(
-        color: Colors.transparent,
         borderRadius: BorderRadius.circular(24.r),
       ),
-      child: Stack(
-        alignment: AlignmentDirectional.bottomEnd,
-        children: [
-          // Carousel inside the card
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20.r),
-            child: CarouselSlider(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20.r),
+        child: Stack(
+          alignment: AlignmentDirectional.bottomEnd,
+          children: [
+            // Carousel inside the card
+            CarouselSlider(
               carouselController: _carouselController,
               items: banners
-                  .map((bannerPath) => Image.asset(
-                        bannerPath,
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        height: 148.h,
-                      ))
+                  .map(
+                    (bannerPath) => Image.asset(
+                      bannerPath,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: 148.h,
+                    ),
+                  )
                   .toList(),
               options: CarouselOptions(
                 height: 148.h,
@@ -62,67 +63,84 @@ class _BannerWidgetState extends State<BannerWidget> {
                 },
               ),
             ),
-          ),
-          // Indicator
-          Positioned(
-            right: 16.w,
-            bottom: 12.h,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
-              decoration: BoxDecoration(
-                color: Theme.of(context).indicatorColor,
-                borderRadius: BorderRadius.circular(12.r),
-              ),
-              child: AnimatedSmoothIndicator(
-                activeIndex: _currentBanner,
-                count: banners.length,
-                effect: WormEffect(
-                  dotHeight: 6.h,
-                  dotWidth: 6.w,
-                  dotColor: Theme.of(context).hintColor,
-                  activeDotColor: Theme.of(context).primaryColor,
-                  type: WormType.thinUnderground,
+            Positioned.fill(
+              child: IgnorePointer(
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        Colors.black.withAlpha((255 * .5).toInt()), // more transparent at top
+                        Colors.transparent, // fully transparent at top
+                      ],
+                    ),
+                  ),
                 ),
-                onDotClicked: (index) {
-                  _carouselController.animateToPage(index);
-                },
               ),
             ),
-          ),
-          // Promo text (optional)
-          Positioned(
-            left: 16.w,
-            bottom: 12.h,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor,
-                    borderRadius: BorderRadius.circular(8.r),
+            // Indicator
+            Positioned(
+              right: 16.w,
+              bottom: 12.h,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).indicatorColor,
+                  borderRadius: BorderRadius.circular(12.r),
+                ),
+                child: AnimatedSmoothIndicator(
+                  activeIndex: _currentBanner,
+                  count: banners.length,
+                  effect: WormEffect(
+                    dotHeight: 6.h,
+                    dotWidth: 6.w,
+                    dotColor: Theme.of(context).hintColor,
+                    activeDotColor: Theme.of(context).primaryColor,
+                    type: WormType.thinUnderground,
                   ),
-                  child: Text(
-                    '30% OFF',
-                    style: Styles().getOverlineSemiBoldStyle(
+                  onDotClicked: (index) {
+                    _carouselController.animateToPage(index);
+                  },
+                ),
+              ),
+            ),
+            // Promo text (optional)
+            Positioned(
+              left: 16.w,
+              bottom: 12.h,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    child: Text(
+                      '30% OFF',
+                      style: Styles().getOverlineSemiBoldStyle(
+                          color: Theme.of(context).scaffoldBackgroundColor),
+                    ),
+                  ),
+                  SizedBox(height: 6.h),
+                  Text(
+                    "On Headphones",
+                    style: Styles().getCaptionRegularStyle(
                         color: Theme.of(context).scaffoldBackgroundColor),
                   ),
-                ),
-                SizedBox(height: 6.h),
-                Text(
-                  "On Headphones",
-                  style: Styles().getCaptionRegularStyle(
-                      color: Theme.of(context).scaffoldBackgroundColor),
-                ),
-                Text(
-                  "Exclusive Sales",
-                  style: Styles().getHeadline2SemiBoldStyle(
-                      color: Theme.of(context).scaffoldBackgroundColor),
-                ),
-              ],
+                  Text(
+                    "Exclusive Sales",
+                    style: Styles().getHeadline2SemiBoldStyle(
+                        color: Theme.of(context).scaffoldBackgroundColor),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

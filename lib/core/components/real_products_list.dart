@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class RealProductsList extends StatelessWidget {
   final List<Data>? products;
   final int? itemCount;
-  const RealProductsList({super.key , this.products , this.itemCount});
+  const RealProductsList({super.key, this.products, this.itemCount});
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +26,12 @@ class RealProductsList extends StatelessWidget {
           colorsNum: 3,
           title: product?.title ?? '',
           image: product?.imageCover ?? '',
-          price: product?.priceAfterDiscount != null
-              ? "\$${product?.priceAfterDiscount.toString()}"
+          price: product?.price != null
+              ? "\$${product?.price.toString()}"
               : "\$${product?.price.toString()}",
-          oldPrice: product?.priceAfterDiscount == null
-              ? ''
-              : "\$${product?.price.toString()}",
-              productId: product?.id ?? '',
+          oldPrice:
+              product?.price == null ? '' : "\$${product?.price.toString()}",
+          productId: product?.id ?? '',
         );
       },
       itemCount: itemCount ?? products?.length ?? 0,

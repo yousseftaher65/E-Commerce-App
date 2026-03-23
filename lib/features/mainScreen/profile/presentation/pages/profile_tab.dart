@@ -1,4 +1,5 @@
 import 'package:ecommerce_pojo/config/routes/page_route_name.dart';
+import 'package:ecommerce_pojo/core/helpers/shared_preference.dart';
 import 'package:ecommerce_pojo/core/utils/app_strings.dart';
 import 'package:ecommerce_pojo/core/utils/assets.gen.dart';
 import 'package:ecommerce_pojo/core/utils/styles.dart';
@@ -28,8 +29,11 @@ class ProfileTab extends StatelessWidget {
                     height: 40.h,
                     width: 40.w,
                     decoration: BoxDecoration(
-                      color: Colors.white,
                       borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    child: Icon(
+                      Icons.person,
+                      size: 40.r,
                     ),
                   ),
                   SizedBox(width: 8.w),
@@ -51,7 +55,11 @@ class ProfileTab extends StatelessWidget {
                   ),
                   const Spacer(),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      // Handle logout
+                      SharedPreferenceHelper.remove('token');
+                      context.go(PageRouteName.login);
+                    },
                     child: Image.asset(
                       Assets.icons.logout.path,
                       height: 32.h,

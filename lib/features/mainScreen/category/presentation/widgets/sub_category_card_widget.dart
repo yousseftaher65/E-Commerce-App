@@ -6,25 +6,31 @@ import 'package:go_router/go_router.dart';
 class SubCategoryCard extends StatelessWidget {
   final String? image;
   final String? title;
-  const SubCategoryCard({super.key, required this.image, required this.title});
+  final String? categoryId;
+
+  const SubCategoryCard(
+      {super.key, required this.image, required this.title, this.categoryId});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(PageRouteName.productsList, extra: title);
+        context.push(PageRouteName.productsList,
+            extra: {'title': title, 'categoryId': categoryId});
       },
-      child:  Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(title ?? '',
-              style:
-                  Styles().getHeadline3BoldStyle(color: Theme.of(context).cardColor) , textAlign: TextAlign.center,
-              //.copyWith(overflow: TextOverflow.ellipsis),
-              ),
+          Text(
+            title ?? '',
+            style: Styles()
+                .getHeadline3BoldStyle(color: Theme.of(context).cardColor),
+            textAlign: TextAlign.center,
+            //.copyWith(overflow: TextOverflow.ellipsis),
+          ),
         ],
       ),
-       /* SizedBox(
+      /* SizedBox(
         height: 167.h,
         width: 160.w,
         child: Column(

@@ -58,8 +58,11 @@ class _HomeTabState extends State<HomeTab> {
             width: 32.w,
             margin: EdgeInsetsDirectional.only(end: 16.w, start: 12),
             decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(8.r),
+            ),
+            child: Icon(
+              Icons.person,
+              size: 30.r,
             ),
           )
         ],
@@ -78,9 +81,7 @@ class _HomeTabState extends State<HomeTab> {
                 create: (context) =>
                     getIt<CategoryBloc>()..add(GetAllCategoriesEvent()),
                 child: BlocConsumer<CategoryBloc, CategoryState>(
-                  listener: (context, state) {
-                   
-                  },
+                  listener: (context, state) {},
                   builder: (context, state) {
                     return Column(
                       children: [
@@ -187,10 +188,10 @@ class _HomeTabState extends State<HomeTab> {
                         colorsNum: 3,
                         title: data?.title ?? '',
                         image: data?.imageCover ?? '',
-                        price: data?.priceAfterDiscount != null
-                            ? "\$${data?.priceAfterDiscount.toString()}"
+                        price: data?.price != null
+                            ? "\$${data?.price.toString()}"
                             : "\$${data?.price.toString()}",
-                        oldPrice: data?.priceAfterDiscount == null
+                        oldPrice: data?.price == null
                             ? ''
                             : "\$${data?.price.toString()}",
                         productId: data?.id ?? '',

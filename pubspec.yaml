@@ -9,39 +9,36 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  supabase_flutter :
-  dio :
-  bloc : ^9.0.0
-  flutter_bloc : ^9.1.0
+  dio: ^5.9.2
+  bloc: ^9.2.0
+  flutter_bloc: ^9.1.1
   google_sign_in : ^6.2.2
-  easy_localization :
-  flutter_screenutil :
-  google_fonts :
-  fluttertoast : ^8.2.12
-  loader_overlay :
-  animate_do :
-  animated_toggle_switch :
-  cached_network_image :
-  carousel_slider:
-  flutter_svg:
-  shared_preferences :
-  get_it:
-  flutter_native_splash:
-  readmore:
-  smooth_page_indicator:  
+  easy_localization: ^3.0.8
+  flutter_screenutil: ^5.9.3
+  google_fonts: ^8.0.2
+  fluttertoast : ^9.0.0
+  loader_overlay: ^5.0.0
+  animate_do: ^4.2.0
+  animated_toggle_switch: ^0.8.7
+  cached_network_image_ce: ^4.6.2
+  carousel_slider: ^5.1.2
+  flutter_svg: ^2.2.4
+  shared_preferences: ^2.5.4
+  get_it: ^9.2.1
+  flutter_native_splash: ^2.4.7
+  readmore: ^3.0.0
+  smooth_page_indicator: ^2.0.1  
   dartz: ^0.10.1
   injectable: ^2.5.0
   pretty_dio_logger: ^1.4.0
-  freezed: ^2.5.7
   equatable: ^2.0.7
-  flutter_gen:
-  redacted: ^1.0.13
-  go_router:
-  internet_connection_checker_plus: ^2.7.0
+  flutter_gen: ^5.12.0
+  go_router: ^17.1.0
+  internet_connection_checker_plus: ^2.9.1+2
   provider:
-  skeletonizer:
-  url_launcher: 
+  skeletonizer: ^2.1.3
   pay_with_paymob: ^1.4.0
+  hydrated_bloc: ^10.1.1
 
 flutter_gen:
   output: lib/core/utils/
@@ -67,10 +64,10 @@ flutter_native_splash:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
-  build_runner:
-  injectable_generator:
-  flutter_gen_runner: 
+  flutter_lints: ^5.0.0
+  build_runner: ^2.12.2
+  injectable_generator: ^2.12.1
+  flutter_gen_runner: ^5.13.0 
 
 flutter:
   uses-material-design: true

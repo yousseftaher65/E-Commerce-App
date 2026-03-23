@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image_ce/cached_network_image.dart';
 import 'package:ecommerce_pojo/config/routes/page_route_name.dart';
 import 'package:ecommerce_pojo/core/components/custom_elevated_button.dart';
 import 'package:ecommerce_pojo/core/components/custom_toast.dart';
@@ -156,7 +156,7 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                 child: Container(color: Colors.grey[300]),
                               ),
                             ),
-                            errorWidget: (context, url, error) =>
+                            errorBuilder: (context, url, error) =>
                                 const Center(child: Icon(Icons.error)),
                           ),
                         );
@@ -275,18 +275,15 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                       Text(
                                         _isLoading
                                             ? '\$---.--'
-                                            : currentProductDetails
-                                                        ?.priceAfterDiscount !=
+                                            : currentProductDetails?.price !=
                                                     null
-                                                ? "\$${currentProductDetails?.priceAfterDiscount}"
+                                                ? "\$${currentProductDetails?.price}"
                                                 : "\$${currentProductDetails?.price ?? '--.--'}",
                                         style: Styles().getHeadline3BoldStyle(
                                             color: Theme.of(context).cardColor),
                                       ),
                                       Text(
-                                        currentProductDetails
-                                                    ?.priceAfterDiscount ==
-                                                null
+                                        currentProductDetails?.price == null
                                             ? ''
                                             : "\$${currentProductDetails?.price ?? ''}",
                                         style: Styles()
@@ -342,7 +339,8 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                               SizedBox(height: 12.h),
                               if (_isLoading ||
                                   (currentProductDetails?.category?.slug
-                                          ?.contains('fashion') ??
+                                          .toString()
+                                          .contains('fashion') ??
                                       false)) ...[
                                 Text(
                                   // Static text
@@ -383,10 +381,7 @@ class _RealProductDetailsWidgetState extends State<RealProductDetailsWidget> {
                                               PageRouteName.payment,
                                               extra: {
                                                 'price': currentProductDetails
-                                                        ?.priceAfterDiscount ??
-                                                    currentProductDetails?.price
-                                                        ?.toDouble() ??
-                                                    0.0,
+                                                        ?.price?.toDouble() ?? 0.0,
                                                 'onPaymentSuccess': () {
                                                   // i want here to check if the payment is successful
                                                   // clear the cart and show a success message

@@ -127,9 +127,13 @@ class GoRouterConfig {
           GoRoute(
             path: PageRouteName.productsList,
             pageBuilder: (_, GoRouterState state) {
-              final title = state.extra as String;
+              var data = state.extra as Map<String, dynamic>;
               return getCustomTransitionPage(
-                  state: state, child: ProductsScreen(title: title));
+                state: state,
+                child: ProductsScreen(
+                    title: data['title'] ?? '',
+                    categoryId: data['categoryId'] ?? ''),
+              );
             },
           ),
         ],
@@ -199,7 +203,8 @@ class GoRouterConfig {
               child: PaymentView(
                 onPaymentError: data['onPaymentError'] as void Function(),
                 onPaymentSuccess: data['onPaymentSuccess'] as void Function(),
-                price: data['price'] as double, // The extra data is of type double, not int.
+                price: data['price']
+                    as double, // The extra data is of type double, not int.
               ),
             );
           }),
