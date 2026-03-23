@@ -18,7 +18,7 @@ class SubCategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context)=> getIt<CategoryBloc>()
+      create: (context) => getIt<CategoryBloc>()
         ..add(GetSubCategoriesEvent(categoryId: categoryId)),
       child: BlocConsumer<CategoryBloc, CategoryState>(
         listener: (context, state) {
@@ -42,7 +42,8 @@ class SubCategoriesScreen extends StatelessWidget {
             return const Center(
               child: CircularProgressIndicator(color: AppColors.cyan),
             );
-          } else if (state.getSubCategoriesRequestState == RequestState.loaded) {
+          } else if (state.getSubCategoriesRequestState ==
+              RequestState.loaded) {
             return Scaffold(
               appBar: AppBar(
                 title: Text(
@@ -53,13 +54,15 @@ class SubCategoriesScreen extends StatelessWidget {
               ),
               body: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-                child: Column(
-                  children: [
-                  if(state.subCategoryModel?.results == 0)
-                    ...[
-                     const Spacer(),
-                      Center(
-                      child: Text('No Sub Categories Found' , style: Styles().getBody2RegularStyle(color: Theme.of(context).cardColor),),
+                child: Column(children: [
+                  if (state.subCategoryModel?.results == 0) ...[
+                    const Spacer(),
+                    Center(
+                      child: Text(
+                        'No Sub Categories Found',
+                        style: Styles().getBody2RegularStyle(
+                            color: Theme.of(context).cardColor),
+                      ),
                     ),
                   ],
                   Expanded(
@@ -73,8 +76,10 @@ class SubCategoriesScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         var data = state.subCategoryModel?.data?[index];
                         return SubCategoryCard(
-                            image: Assets.images.watch.path,
-                            title: data?.name ?? '');
+                          image: Assets.images.watch.path,
+                          categoryId: categoryId,
+                          title: data?.name ?? '',
+                        );
                       },
                     ),
                   ),

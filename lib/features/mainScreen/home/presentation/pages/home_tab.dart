@@ -58,8 +58,11 @@ class _HomeTabState extends State<HomeTab> {
             width: 32.w,
             margin: EdgeInsetsDirectional.only(end: 16.w, start: 12),
             decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(8.r),
+            ),
+            child: Icon(
+              Icons.person,
+              size: 30.r,
             ),
           )
         ],
@@ -78,9 +81,7 @@ class _HomeTabState extends State<HomeTab> {
                 create: (context) =>
                     getIt<CategoryBloc>()..add(GetAllCategoriesEvent()),
                 child: BlocConsumer<CategoryBloc, CategoryState>(
-                  listener: (context, state) {
-                   
-                  },
+                  listener: (context, state) {},
                   builder: (context, state) {
                     return Column(
                       children: [

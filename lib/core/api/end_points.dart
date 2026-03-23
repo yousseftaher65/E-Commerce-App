@@ -18,5 +18,5 @@ class EndPoints {
   static const String getUserOrders = 'orders/user/';
   static const String checkoutSession = 'orders/checkout-session/';
 
-  static String subcategoriesByCategory (String id) => '$categories/$id/$subcategories';
+  static String subcategoriesByCategory (String id) => '$categories/$id/$subcategories/?page=1&limit=20';
 }
