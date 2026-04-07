@@ -1,4 +1,4 @@
-# E-Commerce App
+# Quick Mart
 This is a comprehensive e-commerce application built with Flutter. It provides a complete shopping experience, from browsing products to a secure checkout process. The app is designed with a clean, feature-first architecture, utilizing BLoC for state management and supporting both light and dark themes, as well as English and Arabic languages.
 
 ## Screenshots
